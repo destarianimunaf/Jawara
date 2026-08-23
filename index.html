@@ -172,41 +172,32 @@ function genBarcode(id) {
   const digits = String(899e9 + hash % 999999999).padStart(13, "0").slice(0, 13);
   return digits;
 }
-var initialProducts = [
-  { id: "P1", name: "Kopi Arabica", price: 25e3, stock: 3, iconName: "Coffee", color: "bg-amber-100 text-amber-700" },
-  { id: "P2", name: "Gula Pasir 1kg", price: 15e3, stock: 5, iconName: "Package", color: "bg-rose-100 text-rose-700" },
-  { id: "P3", name: "Susu UHT 1L", price: 18e3, stock: 4, iconName: "Milk", color: "bg-sky-100 text-sky-700" },
-  { id: "P4", name: "Tepung Terigu", price: 12e3, stock: 2, iconName: "Wheat", color: "bg-yellow-100 text-yellow-700" },
-  { id: "P5", name: "Teh Celup", price: 1e4, stock: 20, iconName: "Box", color: "bg-purple-100 text-purple-700" },
-  { id: "P6", name: "Minyak Goreng 1L", price: 22e3, stock: 15, iconName: "Droplet", color: "bg-orange-100 text-orange-700" },
-  { id: "P7", name: "Beras 5kg", price: 65e3, stock: 10, iconName: "Package", color: "bg-lime-100 text-lime-700" },
-  { id: "P8", name: "Kecap Manis", price: 14e3, stock: 8, iconName: "Box", color: "bg-fuchsia-100 text-fuchsia-700" }
-].map((p) => ({ ...p, barcode: genBarcode(p.id) }));
-var initialTransactions = [
-  { id: "INV-180524-001", time: "18 Mei 2024, 10:15", qty: 2, total: 25e4 },
-  { id: "INV-180524-002", time: "18 Mei 2024, 10:02", qty: 2, total: 125e3 },
-  { id: "INV-180524-003", time: "18 Mei 2024, 09:48", qty: 3, total: 45e4 },
-  { id: "INV-180524-004", time: "18 Mei 2024, 09:30", qty: 4, total: 175e3 },
-  { id: "INV-180524-005", time: "18 Mei 2024, 09:12", qty: 5, total: 32e4 }
+var initialProducts = [];
+var initialTransactions = [];
+var salesTrend = [];
+var initialCustomers = [];
+var initialSuppliers = [];
+var ROLES = {
+  kasir: { key: "kasir", label: "Kasir", name: "Rina Wulandari", email: "kasir@jawara.id", desc: "Untuk toko yang sudah berlangganan \u2014 akses kasir, hanya layar Penjualan." },
+  admin: { key: "admin", label: "Admin", name: "Desta Riani", email: "admin@jawara.id", desc: "Untuk toko yang sudah berlangganan \u2014 kelola penuh satu toko: produk, stok, laporan, dll." },
+  superadmin: { key: "superadmin", label: "Super Admin", name: "Desta Riani", email: "desta.ilkom@gmail.com", desc: "Khusus pengelola sistem JAWARA \u2014 bukan untuk akun toko/subscriber." }
+};
+var navItems = [
+  { label: "Dashboard", icon: LayoutDashboard, roles: ["kasir", "admin", "superadmin"] },
+  { label: "Penjualan", icon: ShoppingCart, roles: ["kasir", "admin", "superadmin"] },
+  { label: "Produk", icon: Package, roles: ["admin", "superadmin"] },
+  { label: "Stok", icon: Boxes, roles: ["admin", "superadmin"] },
+  { label: "Barcode", icon: BarcodeIcon, roles: ["admin", "superadmin"] },
+  { label: "Pelanggan", icon: Users, roles: ["admin", "superadmin"] },
+  { label: "Supplier", icon: Truck, roles: ["admin", "superadmin"] },
+  { label: "Laporan", icon: FileText, roles: ["admin", "superadmin"] },
+  { label: "Kelola Akun", icon: Crown, roles: ["superadmin"] },
+  { label: "Pengaturan", icon: Settings, roles: ["admin", "superadmin"] }
 ];
-var salesTrend = [
-  { day: "12 Mei", penjualan: 3800, transaksi: 6500 },
-  { day: "13 Mei", penjualan: 8700, transaksi: 8700 },
-  { day: "14 Mei", penjualan: 6200, transaksi: 9800 },
-  { day: "15 Mei", penjualan: 5100, transaksi: 10800 },
-  { day: "16 Mei", penjualan: 8300, transaksi: 11200 },
-  { day: "17 Mei", penjualan: 6900, transaksi: 10600 },
-  { day: "18 Mei", penjualan: 10600, transaksi: 14200 }
-];
-var initialCustomers = [
-  { id: "C1", name: "Rudi Hartono", phone: "0812-3456-7890" },
-  { id: "C2", name: "Siti Aminah", phone: "0813-2233-4455" },
-  { id: "C3", name: "Budi Santoso", phone: "0857-1122-3344" }
-];
-var initialSuppliers = [
-  { id: "S1", name: "CV Sumber Makmur", phone: "021-5566-7788" },
-  { id: "S2", name: "PT Grosir Pangan", phone: "021-9988-7766" }
-];
+var TOGGLEABLE_NAV_LABELS = navItems.filter((i) => i.label !== "Dashboard" && i.label !== "Kelola Akun").map((i) => i.label);
+var DEFAULT_ADMIN_PERMS = navItems.filter((i) => i.roles.includes("admin") && i.label !== "Dashboard").map((i) => i.label);
+var DEFAULT_KASIR_PERMS = navItems.filter((i) => i.roles.includes("kasir") && i.label !== "Dashboard").map((i) => i.label);
+var defaultPermissions = () => ({ admin: [...DEFAULT_ADMIN_PERMS], kasir: [...DEFAULT_KASIR_PERMS] });
 var initialAccounts = [
   {
     id: "A1",
@@ -280,27 +271,6 @@ var SUBSCRIPTION_PLANS = [
 ];
 var OWNER_BANK_ACCOUNT = { bank: "BCA", number: "08123456789", holder: "Desta Riani" };
 var OWNER_EMAIL = "destarianimunaf@gmail.com";
-var ROLES = {
-  kasir: { key: "kasir", label: "Kasir", name: "Rina Wulandari", email: "kasir@jawara.id", desc: "Akses kasir: hanya layar Penjualan." },
-  admin: { key: "admin", label: "Admin", name: "Desta Riani", email: "admin@jawara.id", desc: "Kelola penuh satu toko: produk, stok, laporan, dll." },
-  superadmin: { key: "superadmin", label: "Super Admin", name: "Desta Riani", email: "desta.ilkom@gmail.com", desc: "Semua akses Admin + kelola akun berbayar JAWARA." }
-};
-var navItems = [
-  { label: "Dashboard", icon: LayoutDashboard, roles: ["kasir", "admin", "superadmin"] },
-  { label: "Penjualan", icon: ShoppingCart, roles: ["kasir", "admin", "superadmin"] },
-  { label: "Produk", icon: Package, roles: ["admin", "superadmin"] },
-  { label: "Stok", icon: Boxes, roles: ["admin", "superadmin"] },
-  { label: "Barcode", icon: BarcodeIcon, roles: ["admin", "superadmin"] },
-  { label: "Pelanggan", icon: Users, roles: ["admin", "superadmin"] },
-  { label: "Supplier", icon: Truck, roles: ["admin", "superadmin"] },
-  { label: "Laporan", icon: FileText, roles: ["admin", "superadmin"] },
-  { label: "Kelola Akun", icon: Crown, roles: ["superadmin"] },
-  { label: "Pengaturan", icon: Settings, roles: ["admin", "superadmin"] }
-];
-var TOGGLEABLE_NAV_LABELS = navItems.filter((i) => i.label !== "Dashboard" && i.label !== "Kelola Akun").map((i) => i.label);
-var DEFAULT_ADMIN_PERMS = navItems.filter((i) => i.roles.includes("admin") && i.label !== "Dashboard").map((i) => i.label);
-var DEFAULT_KASIR_PERMS = navItems.filter((i) => i.roles.includes("kasir") && i.label !== "Dashboard").map((i) => i.label);
-var defaultPermissions = () => ({ admin: [...DEFAULT_ADMIN_PERMS], kasir: [...DEFAULT_KASIR_PERMS] });
 var features = [
   {
     title: "Penjualan (POS)",
@@ -346,6 +316,21 @@ var features = [
   }
 ];
 var rupiah = (n) => "Rp " + n.toLocaleString("id-ID");
+function buildSalesTrend(transactions) {
+  const fmt = new Intl.DateTimeFormat("id-ID", { day: "2-digit", month: "short" });
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = /* @__PURE__ */ new Date();
+    d.setDate(d.getDate() - i);
+    days.push({ key: d.toISOString().slice(0, 10), day: fmt.format(d), penjualan: 0 });
+  }
+  transactions.forEach((t) => {
+    if (!t.dateKey) return;
+    const bucket = days.find((d) => d.key === t.dateKey);
+    if (bucket) bucket.penjualan += t.total;
+  });
+  return days;
+}
 function playCashSound() {
   try {
     const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -515,7 +500,9 @@ function MenuPage({ onBack }) {
   }), filtered.length === 0 && /* @__PURE__ */ React.createElement("p", { className: "col-span-full text-center text-sm text-slate-400 py-14" }, "Produk tidak ditemukan."))));
 }
 function LoginPage({ onLogin, onBack, onGoRegister, settings, prefillEmail, initialRole }) {
-  const [selectedRole, setSelectedRole] = useState(initialRole || "admin");
+  const isSystemEntry = initialRole === "superadmin";
+  const visibleRoles = isSystemEntry ? [ROLES.superadmin] : [ROLES.kasir, ROLES.admin];
+  const [selectedRole, setSelectedRole] = useState(isSystemEntry ? "superadmin" : "admin");
   const [email, setEmail] = useState(prefillEmail || "");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -578,7 +565,7 @@ function LoginPage({ onLogin, onBack, onGoRegister, settings, prefillEmail, init
     }
     onLogin(selectedRole, acc);
   };
-  return /* @__PURE__ */ React.createElement("div", { className: "min-h-screen bg-ink flex items-center justify-center p-5 relative overflow-hidden" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -top-24 -left-24 w-72 h-72 rounded-full bg-[#D5451B]/20 blur-3xl" }), /* @__PURE__ */ React.createElement("div", { className: "absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-[#F0A202]/15 blur-3xl" }), /* @__PURE__ */ React.createElement("div", { className: "w-full max-w-md bg-nota-paper rounded-3xl shadow-2xl p-8 relative border border-white/10" }, /* @__PURE__ */ React.createElement("button", { onClick: onBack, className: "inline-flex items-center gap-1.5 font-mono-nota text-xs font-semibold text-stone-600 hover:text-stone-900 hover:bg-stone-900/5 border border-stone-900/15 rounded-full px-3 py-1.5 mb-6 transition-colors" }, /* @__PURE__ */ React.createElement(ArrowLeft, { className: "w-3.5 h-3.5" }), " Kembali ke Beranda"), /* @__PURE__ */ React.createElement("div", { className: "mb-6" }, /* @__PURE__ */ React.createElement(Logo, { logoUrl: settings.logoUrl })), /* @__PURE__ */ React.createElement("h1", { className: "font-display text-2xl uppercase text-stone-900 mb-1" }, "Masuk ke Akun Anda"), /* @__PURE__ */ React.createElement("p", { className: "text-sm text-stone-500 mb-5" }, "Khusus toko yang sudah berlangganan JAWARA. Pilih peran, lalu masuk dengan email & kata sandi akun Anda."), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-3 gap-2 mb-5" }, Object.values(ROLES).map((r) => /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React.createElement("div", { className: "min-h-screen bg-ink flex items-center justify-center p-5 relative overflow-hidden" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -top-24 -left-24 w-72 h-72 rounded-full bg-[#D5451B]/20 blur-3xl" }), /* @__PURE__ */ React.createElement("div", { className: "absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-[#F0A202]/15 blur-3xl" }), /* @__PURE__ */ React.createElement("div", { className: "w-full max-w-md bg-nota-paper rounded-3xl shadow-2xl p-8 relative border border-white/10" }, /* @__PURE__ */ React.createElement("button", { onClick: onBack, className: "inline-flex items-center gap-1.5 font-mono-nota text-xs font-semibold text-stone-600 hover:text-stone-900 hover:bg-stone-900/5 border border-stone-900/15 rounded-full px-3 py-1.5 mb-6 transition-colors" }, /* @__PURE__ */ React.createElement(ArrowLeft, { className: "w-3.5 h-3.5" }), " Kembali ke Beranda"), /* @__PURE__ */ React.createElement("div", { className: "mb-6" }, /* @__PURE__ */ React.createElement(Logo, { logoUrl: settings.logoUrl })), /* @__PURE__ */ React.createElement("h1", { className: "font-display text-2xl uppercase text-stone-900 mb-1" }, isSystemEntry ? "Masuk Admin Sistem" : "Masuk ke Akun Anda"), /* @__PURE__ */ React.createElement("p", { className: "text-sm text-stone-500 mb-5" }, isSystemEntry ? "Khusus pengelola sistem JAWARA \u2014 bukan untuk akun toko." : "Khusus toko yang sudah berlangganan JAWARA. Pilih peran, lalu masuk dengan email & kata sandi akun Anda."), /* @__PURE__ */ React.createElement("div", { className: `grid gap-2 mb-5 ${visibleRoles.length === 1 ? "grid-cols-1" : "grid-cols-2"}` }, visibleRoles.map((r) => /* @__PURE__ */ React.createElement(
     "button",
     {
       type: "button",
@@ -721,7 +708,7 @@ function DashboardHome({ products, transactions, setActive }) {
     { label: "Produk Terjual", value: String(totalQty) },
     { label: "Stok Menipis", value: String(lowStock.length) }
   ];
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4" }, kpis.map((k) => /* @__PURE__ */ React.createElement("div", { key: k.label, className: "bg-white rounded-2xl border border-slate-100 shadow-sm p-4" }, /* @__PURE__ */ React.createElement("p", { className: "text-xs text-slate-500" }, k.label), /* @__PURE__ */ React.createElement("p", { className: "text-2xl font-bold text-slate-900 mt-2" }, k.value)))), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4" }, /* @__PURE__ */ React.createElement("div", { className: "lg:col-span-2 bg-white rounded-2xl border border-slate-100 shadow-sm p-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-3" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 text-sm" }, "Grafik Penjualan"), /* @__PURE__ */ React.createElement("span", { className: "text-xs text-slate-500 border border-slate-200 rounded-full px-3 py-1" }, "7 Hari Terakhir")), /* @__PURE__ */ React.createElement("div", { className: "h-64" }, /* @__PURE__ */ React.createElement(ResponsiveContainer, { width: "100%", height: "100%" }, /* @__PURE__ */ React.createElement(LineChart, { data: salesTrend, margin: { top: 5, right: 10, left: -10, bottom: 0 } }, /* @__PURE__ */ React.createElement(CartesianGrid, { strokeDasharray: "3 3", stroke: "#f1f5f9" }), /* @__PURE__ */ React.createElement(XAxis, { dataKey: "day", tick: { fontSize: 11, fill: "#94a3b8" }, axisLine: false, tickLine: false }), /* @__PURE__ */ React.createElement(YAxis, { tick: { fontSize: 11, fill: "#94a3b8" }, axisLine: false, tickLine: false }), /* @__PURE__ */ React.createElement(Tooltip, { contentStyle: { fontSize: 12, borderRadius: 10 } }), /* @__PURE__ */ React.createElement(Legend, { wrapperStyle: { fontSize: 12 } }), /* @__PURE__ */ React.createElement(Line, { name: "Penjualan (Rp)", type: "monotone", dataKey: "penjualan", stroke: "#7c3aed", strokeWidth: 2.5, dot: { r: 3 } }), /* @__PURE__ */ React.createElement(Line, { name: "Transaksi", type: "monotone", dataKey: "transaksi", stroke: "#f59e0b", strokeWidth: 2.5, dot: { r: 3 } }))))), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-2xl border border-slate-100 shadow-sm p-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-3" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 text-sm" }, "Penjualan Terakhir"), /* @__PURE__ */ React.createElement("button", { onClick: () => setActive("Laporan"), className: "text-xs text-violet-600 font-medium hover:underline" }, "Lihat Semua")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col divide-y divide-slate-50" }, transactions.slice(0, 5).map((s, i) => /* @__PURE__ */ React.createElement("div", { key: s.id, className: "flex items-center gap-3 py-2.5" }, /* @__PURE__ */ React.createElement("div", { className: "w-6 h-6 rounded-full bg-violet-50 text-violet-600 text-[11px] font-bold flex items-center justify-center shrink-0" }, i + 1), /* @__PURE__ */ React.createElement("div", { className: "flex-1 min-w-0" }, /* @__PURE__ */ React.createElement("p", { className: "text-sm font-medium text-slate-700 truncate" }, s.id), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-slate-400" }, s.time)), /* @__PURE__ */ React.createElement("p", { className: "text-sm font-semibold text-slate-800 whitespace-nowrap" }, rupiah(s.total))))))), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 lg:grid-cols-2 gap-4" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-2xl border border-slate-100 shadow-sm p-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-3" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 text-sm" }, "Stok Menipis"), /* @__PURE__ */ React.createElement("button", { onClick: () => setActive("Stok"), className: "text-xs text-violet-600 font-medium hover:underline" }, "Lihat Semua")), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-2 gap-3" }, lowStock.length === 0 && /* @__PURE__ */ React.createElement("p", { className: "text-sm text-slate-400 col-span-2" }, "Semua stok aman."), lowStock.map((item) => {
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4" }, kpis.map((k) => /* @__PURE__ */ React.createElement("div", { key: k.label, className: "bg-white rounded-2xl border border-slate-100 shadow-sm p-4" }, /* @__PURE__ */ React.createElement("p", { className: "text-xs text-slate-500" }, k.label), /* @__PURE__ */ React.createElement("p", { className: "text-2xl font-bold text-slate-900 mt-2" }, k.value)))), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4" }, /* @__PURE__ */ React.createElement("div", { className: "lg:col-span-2 bg-white rounded-2xl border border-slate-100 shadow-sm p-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-3" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 text-sm" }, "Grafik Penjualan"), /* @__PURE__ */ React.createElement("span", { className: "text-xs text-slate-500 border border-slate-200 rounded-full px-3 py-1" }, "7 Hari Terakhir")), /* @__PURE__ */ React.createElement("div", { className: "h-64" }, /* @__PURE__ */ React.createElement(ResponsiveContainer, { width: "100%", height: "100%" }, /* @__PURE__ */ React.createElement(LineChart, { data: buildSalesTrend(transactions), margin: { top: 5, right: 10, left: -10, bottom: 0 } }, /* @__PURE__ */ React.createElement(CartesianGrid, { strokeDasharray: "3 3", stroke: "#f1f5f9" }), /* @__PURE__ */ React.createElement(XAxis, { dataKey: "day", tick: { fontSize: 11, fill: "#94a3b8" }, axisLine: false, tickLine: false }), /* @__PURE__ */ React.createElement(YAxis, { tick: { fontSize: 11, fill: "#94a3b8" }, axisLine: false, tickLine: false }), /* @__PURE__ */ React.createElement(Tooltip, { contentStyle: { fontSize: 12, borderRadius: 10 }, formatter: (v) => rupiah(v) }), /* @__PURE__ */ React.createElement(Line, { name: "Penjualan (Rp)", type: "monotone", dataKey: "penjualan", stroke: "#7c3aed", strokeWidth: 2.5, dot: { r: 3 } }))))), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-2xl border border-slate-100 shadow-sm p-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-3" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 text-sm" }, "Penjualan Terakhir"), /* @__PURE__ */ React.createElement("button", { onClick: () => setActive("Laporan"), className: "text-xs text-violet-600 font-medium hover:underline" }, "Lihat Semua")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col divide-y divide-slate-50" }, transactions.slice(0, 5).map((s, i) => /* @__PURE__ */ React.createElement("div", { key: s.id, className: "flex items-center gap-3 py-2.5" }, /* @__PURE__ */ React.createElement("div", { className: "w-6 h-6 rounded-full bg-violet-50 text-violet-600 text-[11px] font-bold flex items-center justify-center shrink-0" }, i + 1), /* @__PURE__ */ React.createElement("div", { className: "flex-1 min-w-0" }, /* @__PURE__ */ React.createElement("p", { className: "text-sm font-medium text-slate-700 truncate" }, s.id), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-slate-400" }, s.time)), /* @__PURE__ */ React.createElement("p", { className: "text-sm font-semibold text-slate-800 whitespace-nowrap" }, rupiah(s.total))))))), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-1 lg:grid-cols-2 gap-4" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-2xl border border-slate-100 shadow-sm p-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-3" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 text-sm" }, "Stok Menipis"), /* @__PURE__ */ React.createElement("button", { onClick: () => setActive("Stok"), className: "text-xs text-violet-600 font-medium hover:underline" }, "Lihat Semua")), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-2 gap-3" }, lowStock.length === 0 && /* @__PURE__ */ React.createElement("p", { className: "text-sm text-slate-400 col-span-2" }, "Semua stok aman."), lowStock.map((item) => {
     const Icon = ICONS[item.iconName] || Box;
     return /* @__PURE__ */ React.createElement("div", { key: item.id, className: "border border-slate-100 rounded-xl p-3" }, /* @__PURE__ */ React.createElement("div", { className: `w-9 h-9 rounded-lg flex items-center justify-center mb-2 ${item.color}` }, /* @__PURE__ */ React.createElement(Icon, { className: "w-4 h-4" })), /* @__PURE__ */ React.createElement("p", { className: "text-sm font-medium text-slate-700" }, item.name), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-rose-500 font-medium" }, "Stok: ", item.stock));
   }))), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-2xl border border-slate-100 shadow-sm p-4" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-3" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 text-sm" }, "Produk Termahal"), /* @__PURE__ */ React.createElement("button", { onClick: () => setActive("Produk"), className: "text-xs text-violet-600 font-medium hover:underline" }, "Lihat Semua")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col divide-y divide-slate-50" }, topProducts.map((p, i) => /* @__PURE__ */ React.createElement("div", { key: p.id, className: "flex items-center gap-3 py-2.5" }, /* @__PURE__ */ React.createElement("div", { className: "w-6 h-6 rounded-full bg-slate-100 text-slate-500 text-[11px] font-bold flex items-center justify-center" }, i + 1), /* @__PURE__ */ React.createElement("p", { className: "flex-1 text-sm font-medium text-slate-700" }, p.name), /* @__PURE__ */ React.createElement("p", { className: "text-sm text-slate-500" }, rupiah(p.price))))))));
@@ -846,6 +833,7 @@ function PenjualanPage({ products, setProducts, transactions, setTransactions, c
     const newTx = {
       id: `INV-${(/* @__PURE__ */ new Date()).toISOString().slice(2, 10).replace(/-/g, "")}-${invNo}`,
       time: (/* @__PURE__ */ new Date()).toLocaleString("id-ID", { day: "2-digit", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }),
+      dateKey: (/* @__PURE__ */ new Date()).toISOString().slice(0, 10),
       qty: totalQty,
       items,
       customerId: selectedCustomer?.id || null,
