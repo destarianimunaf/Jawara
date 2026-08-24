@@ -847,6 +847,198 @@
     }
   }
 
+
+  /* =========================================================
+     v12 — dark neon landing inspired by requested mockup
+     Existing logo/auth/business logic preserved.
+     ========================================================= */
+  .jw-neon-hero{
+    position:relative;
+    overflow:hidden;
+    color:#fff;
+    background:
+      radial-gradient(circle at 72% 32%,rgba(91,52,230,.24),transparent 28%),
+      radial-gradient(circle at 90% 80%,rgba(244,81,98,.12),transparent 24%),
+      linear-gradient(135deg,#080B22 0%,#0A0E2A 46%,#120A2C 100%);
+  }
+  .jw-neon-hero::after{
+    content:"";
+    position:absolute;inset:auto 0 0 0;height:170px;
+    background:linear-gradient(to bottom,transparent,rgba(91,52,230,.16));
+    pointer-events:none;
+  }
+  .jw-neon-grid{
+    position:absolute;inset:0;pointer-events:none;opacity:.22;
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:48px 48px;
+    mask-image:linear-gradient(to bottom,transparent 4%,#000 30%,#000 70%,transparent 100%);
+  }
+  .jw-neon-kicker{
+    display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+    background:rgba(124,58,237,.20);border:1px solid rgba(196,181,253,.16);
+    color:#E9DDFF;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase
+  }
+  .jw-neon-title{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:clamp(3rem,6.1vw,5.8rem);
+    line-height:.98;letter-spacing:-.055em;font-weight:800;margin:22px 0 22px
+  }
+  .jw-neon-title .yellow{color:#FFC928}
+  .jw-neon-title .pink{color:#F84D83}
+  .jw-neon-copy{color:rgba(255,255,255,.70);font-size:17px;line-height:1.75;max-width:620px}
+  .jw-neon-benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+  .jw-neon-benefit{
+    display:flex;gap:11px;align-items:flex-start;padding:13px 14px;border-radius:16px;
+    background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07)
+  }
+  .jw-neon-benefit .ico{
+    width:38px;height:38px;border-radius:12px;display:grid;place-items:center;flex:0 0 38px;
+    background:linear-gradient(135deg,rgba(124,58,237,.35),rgba(244,81,98,.18));
+    color:#D8CBFF;border:1px solid rgba(255,255,255,.07)
+  }
+  .jw-neon-benefit strong{display:block;font-size:12px}
+  .jw-neon-benefit span{display:block;color:rgba(255,255,255,.54);font-size:11px;line-height:1.45;margin-top:2px}
+  .jw-neon-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .jw-btn-yellow,.jw-btn-outline{
+    min-height:48px;border-radius:14px;padding:0 19px;font-weight:800;
+    display:inline-flex;align-items:center;justify-content:center;gap:9px
+  }
+  .jw-btn-yellow{background:#FFC928;color:#17130A;border:1px solid #FFD95F;box-shadow:0 12px 34px rgba(255,201,40,.20)}
+  .jw-btn-outline{color:#fff;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.035)}
+
+  .jw-mascot-stage{position:relative;min-height:610px}
+  .jw-mascot-stage .stage-glow{
+    position:absolute;left:50%;bottom:20px;transform:translateX(-50%);
+    width:72%;height:90px;border-radius:50%;
+    background:radial-gradient(ellipse,rgba(124,58,237,.50),rgba(124,58,237,0) 68%);
+    filter:blur(10px)
+  }
+  .jw-rooster{
+    position:absolute;left:4%;top:11%;width:44%;max-width:330px;z-index:4;
+    filter:drop-shadow(0 18px 34px rgba(115,68,255,.28));
+  }
+  .jw-rooster svg{width:100%;height:auto;overflow:visible}
+  .jw-rooster .r-stroke{
+    fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:10;
+    vector-effect:non-scaling-stroke
+  }
+  .jw-rooster .r-purple{stroke:#8A5CFF}
+  .jw-rooster .r-pink{stroke:#FF4F8A}
+  .jw-rooster .r-yellow{stroke:#FFC928}
+  .jw-rooster .r-white{stroke:#FFFFFF}
+  .jw-rooster .r-glow{animation:jwMascotPulse 4.6s ease-in-out infinite;transform-origin:center}
+  .jw-rooster .r-comb{animation:jwCombFloat 3.6s ease-in-out infinite;transform-origin:50% 80%}
+  @keyframes jwMascotPulse{0%,100%{opacity:.86;transform:scale(.985)}50%{opacity:1;transform:scale(1.018)}}
+  @keyframes jwCombFloat{0%,100%{transform:rotate(-1deg)}50%{transform:rotate(2deg)}}
+
+  .jw-neon-pos{
+    position:absolute;right:0;top:14%;width:67%;min-height:390px;z-index:3;
+    transform:perspective(1200px) rotateY(-4deg) rotateX(1deg);
+  }
+  .jw-monitor{
+    border-radius:26px;padding:12px;background:#171A2E;
+    border:1px solid rgba(196,181,253,.35);
+    box-shadow:0 28px 70px rgba(0,0,0,.32),0 0 0 1px rgba(255,255,255,.03) inset;
+  }
+  .jw-monitor-screen{
+    border-radius:18px;background:#F8FAFC;color:#0F172A;padding:14px;min-height:300px;overflow:hidden
+  }
+  .jw-monitor-top{display:flex;align-items:center;justify-content:space-between;font-size:10px;color:#64748B;margin-bottom:10px}
+  .jw-monitor-grid{display:grid;grid-template-columns:88px 1fr;gap:12px}
+  .jw-monitor-side{background:#171A2E;border-radius:12px;padding:12px 8px;color:#A8A4BC;font-size:8px}
+  .jw-monitor-side div{padding:7px;border-radius:7px;margin-bottom:4px}
+  .jw-monitor-side div:first-child{background:#5B34E6;color:#fff}
+  .jw-mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .jw-mini-stat{background:#fff;border:1px solid #E9E7F0;border-radius:11px;padding:10px}
+  .jw-mini-stat span{font-size:8px;color:#8A8495;display:block}
+  .jw-mini-stat strong{font-size:12px;margin-top:5px;display:block}
+  .jw-mini-chart{margin-top:9px;border:1px solid #E9E7F0;border-radius:12px;padding:10px;background:#fff}
+  .jw-mini-chart svg{width:100%;height:120px}
+  .jw-pos-hardware{position:absolute;right:4%;bottom:1%;display:flex;align-items:flex-end;gap:10px;z-index:4}
+  .jw-printer,.jw-scanner{
+    background:#151821;border:1px solid #2A2F3A;box-shadow:0 18px 35px rgba(0,0,0,.28)
+  }
+  .jw-printer{width:118px;height:92px;border-radius:18px;position:relative}
+  .jw-printer::before{content:"";position:absolute;left:25px;right:25px;top:-28px;height:36px;background:#fff;border-radius:5px 5px 0 0;box-shadow:0 0 0 1px #DADDE6 inset}
+  .jw-scanner{width:54px;height:118px;border-radius:20px 20px 12px 12px;transform:rotate(8deg)}
+  .jw-scanner::before{content:"";position:absolute;left:8px;right:8px;top:14px;height:22px;border-radius:8px;background:#391A2E;box-shadow:0 0 18px rgba(244,81,98,.36) inset}
+  .jw-orbit{
+    position:absolute;inset:0;pointer-events:none;z-index:1
+  }
+  .jw-orbit svg{width:100%;height:100%}
+  .jw-orbit path{fill:none;stroke-width:1.6;stroke-dasharray:7 8;animation:jwOrbit 18s linear infinite}
+  .jw-orbit .p{stroke:#7C3AED}.jw-orbit .y{stroke:#F6B800}.jw-orbit .r{stroke:#F45162}
+  @keyframes jwOrbit{to{stroke-dashoffset:-220}}
+
+  .jw-neon-band-wrap{background:#0D102B;padding:0 0 70px}
+  .jw-neon-band{
+    max-width:1240px;margin:0 auto;border-radius:28px;padding:28px 32px;
+    background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.028));
+    border:1px solid rgba(196,181,253,.16);display:grid;grid-template-columns:repeat(5,1fr);gap:18px;
+    color:#fff;box-shadow:0 20px 70px rgba(0,0,0,.18)
+  }
+  .jw-neon-band-card{text-align:center;padding:8px 10px}
+  .jw-neon-band-card .nicon{
+    margin:0 auto 12px;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;
+    background:rgba(124,58,237,.18);color:#A78BFA;border:1px solid rgba(255,255,255,.06)
+  }
+  .jw-neon-band-card:nth-child(2) .nicon{background:rgba(246,184,0,.15);color:#FFC928}
+  .jw-neon-band-card:nth-child(4) .nicon{background:rgba(244,81,98,.14);color:#FF6E98}
+  .jw-neon-band-card:nth-child(5) .nicon{background:rgba(59,130,246,.14);color:#73A8FF}
+  .jw-neon-band-card strong{display:block;font-size:13px}
+  .jw-neon-band-card span{display:block;font-size:11px;line-height:1.55;color:rgba(255,255,255,.56);margin-top:5px}
+
+  .jw-neon-why{
+    background:#F7F7FC;padding:86px 0 100px
+  }
+  .jw-neon-why-grid{
+    max-width:1240px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:.92fr 1.08fr;gap:54px;align-items:center
+  }
+  .jw-neon-why h2{font-size:clamp(2.4rem,4.8vw,4.3rem);line-height:1.02;letter-spacing:-.045em;font-weight:800;margin:10px 0 18px}
+  .jw-neon-why h2 span{color:#6D28D9}
+  .jw-neon-why p{color:#6B7280;line-height:1.7}
+  .jw-neon-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+  .jw-neon-stat strong{font-size:22px;display:block}.jw-neon-stat span{font-size:10px;color:#9CA3AF}
+  .jw-neon-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .jw-neon-card{background:#fff;border:1px solid #E8E5F0;border-radius:20px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+  .jw-neon-card .icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#F1EDFF;color:#6D28D9;flex:0 0 44px}
+  .jw-neon-card:nth-child(2) .icon{background:#FFF3C8;color:#D99A00}
+  .jw-neon-card:nth-child(3) .icon{background:#FFE7EA;color:#F45162}
+  .jw-neon-card:nth-child(4) .icon{background:#E8F3FF;color:#3B82F6}
+  .jw-neon-card strong{display:block;font-size:14px}.jw-neon-card span{font-size:12px;line-height:1.55;color:#7A7484;margin-top:4px;display:block}
+
+  @media(max-width:1050px){
+    .jw-neon-benefits{grid-template-columns:1fr}
+    .jw-mascot-stage{min-height:560px;margin-top:20px}
+    .jw-neon-pos{width:72%;right:-8%}
+    .jw-rooster{left:2%;width:42%}
+    .jw-neon-band{grid-template-columns:repeat(3,1fr);margin:0 16px}
+  }
+  @media(max-width:820px){
+    .jw-mascot-stage{min-height:520px}
+    .jw-neon-pos{width:86%;right:-18%;top:18%}
+    .jw-rooster{width:46%;left:-3%;top:15%}
+    .jw-pos-hardware{display:none}
+    .jw-neon-why-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:640px){
+    .jw-neon-title{font-size:clamp(2.7rem,13vw,4.3rem)}
+    .jw-neon-copy{font-size:15px}
+    .jw-neon-actions{flex-direction:column;align-items:stretch}
+    .jw-mascot-stage{min-height:440px}
+    .jw-neon-pos{width:112%;right:-44%;top:22%}
+    .jw-rooster{width:52%;left:-6%;top:18%}
+    .jw-neon-band{grid-template-columns:1fr 1fr;padding:22px 18px}
+    .jw-neon-band-card:last-child{grid-column:1/-1}
+    .jw-neon-stats{grid-template-columns:1fr 1fr}
+    .jw-neon-cards{grid-template-columns:1fr}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .jw-rooster .r-glow,.jw-rooster .r-comb,.jw-orbit path{animation:none!important}
+  }
+
 </style>
 </head>
 <body>
@@ -923,6 +1115,9 @@ import {
   FlaskConical,
   BadgeCheck,
   FileSpreadsheet,
+  Cloud,
+  Rocket,
+  PlugZap,
   FileDown
 } from "lucide-react";
 import {
@@ -1865,6 +2060,116 @@ function LandingInteractiveMenu({ onViewMenu }) {
   );
 }
 
+
+function NeonRoosterMark() {
+  return React.createElement("div",{className:"jw-rooster","aria-hidden":"true"},
+    React.createElement("svg",{viewBox:"0 0 360 500"},
+      React.createElement("g",{className:"r-glow"},
+        React.createElement("path",{className:"r-stroke r-white",d:"M183 106c57 1 98 42 104 102 7 67-21 137-84 208-23 25-48 43-70 55 5-37 12-74 17-111 5-38 7-75 0-110-7-38-1-80 33-112Z"}),
+        React.createElement("path",{className:"r-stroke r-purple",d:"M150 250c-19 60-28 126-31 200 29-18 57-40 81-67 38-44 65-91 78-136"}),
+        React.createElement("path",{className:"r-stroke r-yellow",d:"M128 177c-21 10-34 26-44 45l31 5c-9 16-12 31-10 45 22-10 40-23 54-39"}),
+        React.createElement("path",{className:"r-stroke r-yellow",d:"M176 172c9-4 18-3 26 2-7 12-15 20-25 23-5-9-5-17-1-25Z"}),
+        React.createElement("g",{className:"r-comb"},
+          React.createElement("path",{className:"r-stroke r-pink",d:"M172 103c2-35 15-64 40-84 5 23 7 42 6 57 13-25 30-43 52-54 0 25-5 45-14 61 17-16 35-24 55-24-7 24-20 44-39 59"})
+        ),
+        React.createElement("path",{className:"r-stroke r-purple",d:"M179 363c33-24 60-52 81-83"}),
+        React.createElement("path",{className:"r-stroke r-purple",d:"M163 414c29-16 53-34 74-55"})
+      )
+    )
+  );
+}
+
+function NeonPosMock() {
+  return React.createElement(React.Fragment,null,
+    React.createElement("div",{className:"jw-neon-pos"},
+      React.createElement("div",{className:"jw-monitor"},
+        React.createElement("div",{className:"jw-monitor-screen"},
+          React.createElement("div",{className:"jw-monitor-top"},React.createElement("strong",null,"JAWARA Dashboard"),React.createElement("span",null,"Hari ini")),
+          React.createElement("div",{className:"jw-monitor-grid"},
+            React.createElement("div",{className:"jw-monitor-side"},["Dashboard","Penjualan","Produk","Stok","Kasir","Laporan"].map((x,i)=>React.createElement("div",{key:x},x))),
+            React.createElement("div",null,
+              React.createElement("div",{className:"jw-mini-stats"},
+                React.createElement("div",{className:"jw-mini-stat"},React.createElement("span",null,"Total Penjualan"),React.createElement("strong",null,"Rp 12.540.000")),
+                React.createElement("div",{className:"jw-mini-stat"},React.createElement("span",null,"Transaksi"),React.createElement("strong",null,"152")),
+                React.createElement("div",{className:"jw-mini-stat"},React.createElement("span",null,"Produk Terjual"),React.createElement("strong",null,"320"))
+              ),
+              React.createElement("div",{className:"jw-mini-chart"},
+                React.createElement("span",{className:"text-[9px] font-semibold text-slate-500"},"Grafik Penjualan"),
+                React.createElement("svg",{viewBox:"0 0 500 150",preserveAspectRatio:"none"},
+                  React.createElement("polyline",{points:"0,125 60,105 120,112 180,78 240,91 300,54 360,66 420,29 500,43",fill:"none",stroke:"#7C3AED",strokeWidth:"4",strokeLinecap:"round"}),
+                  React.createElement("polyline",{points:"0,138 60,130 120,122 180,126 240,109 300,114 360,98 420,93 500,84",fill:"none",stroke:"#F6B800",strokeWidth:"2.5",strokeLinecap:"round"})
+                )
+              )
+            )
+          )
+        )
+      )
+    ),
+    React.createElement("div",{className:"jw-pos-hardware"},
+      React.createElement("div",{className:"jw-printer"}),
+      React.createElement("div",{className:"jw-scanner"})
+    )
+  );
+}
+
+function NeonOrbit() {
+  return React.createElement("div",{className:"jw-orbit","aria-hidden":"true"},
+    React.createElement("svg",{viewBox:"0 0 900 650"},
+      React.createElement("path",{className:"p",d:"M44 173c161-84 231 81 358 17 138-69 239-117 419-40"}),
+      React.createElement("path",{className:"y",d:"M114 548c153-108 281-60 398-125 118-66 207-21 324-75"}),
+      React.createElement("path",{className:"r",d:"M470 100c74 45 150 31 230 9 76-21 121 8 159 48"})
+    )
+  );
+}
+
+function NeonFeatureBand() {
+  const items = [
+    {icon:Boxes,title:"Kelola Stok Anti Ribet",text:"Stok otomatis berkurang, warning stok menipis, riwayat tetap kebaca."},
+    {icon:ShoppingCart,title:"Kasir Cepat & Praktis",text:"Transaksi sat-set, scanner barcode, struk otomatis."},
+    {icon:BarcodeIcon,title:"Barcode",text:"Generate, scan, dan cetak label langsung dari sistem."},
+    {icon:FileText,title:"Laporan Lengkap",text:"Penjualan, pelanggan, produk, sampai angka keuangan."},
+    {icon:Cloud,title:"Akses di Mana Saja",text:"Pantau toko dari HP, tablet, atau laptop."}
+  ];
+  return React.createElement("div",{className:"jw-neon-band-wrap"},
+    React.createElement("div",{className:"jw-neon-band"},
+      items.map(x=>React.createElement("div",{key:x.title,className:"jw-neon-band-card"},
+        React.createElement("div",{className:"nicon"},React.createElement(x.icon,{className:"w-5 h-5"})),
+        React.createElement("strong",null,x.title),
+        React.createElement("span",null,x.text)
+      ))
+    )
+  );
+}
+
+function NeonWhySection() {
+  return React.createElement("section",{className:"jw-neon-why"},
+    React.createElement("div",{className:"jw-neon-why-grid"},
+      React.createElement("div",null,
+        React.createElement("span",{className:"jw-neon-kicker",style:{color:"#6D28D9",background:"#EEE9FF",borderColor:"#E3D9FF"}},"KENAPA JAWARA?"),
+        React.createElement("h2",null,"Solusi POS yang ",React.createElement("span",null,"paham kebutuhanmu")),
+        React.createElement("p",null,"Dibuat buat toko yang pengen kerja lebih cepat tanpa sistem yang terasa berat. Fokus ke transaksi, stok, barcode, dan laporan dalam satu flow yang gampang diikutin."),
+        React.createElement("div",{className:"jw-neon-stats"},
+          React.createElement("div",{className:"jw-neon-stat"},React.createElement("strong",null,"10K+"),React.createElement("span",null,"Pengguna Aktif")),
+          React.createElement("div",{className:"jw-neon-stat"},React.createElement("strong",null,"50K+"),React.createElement("span",null,"Transaksi / Hari")),
+          React.createElement("div",{className:"jw-neon-stat"},React.createElement("strong",null,"99.9%"),React.createElement("span",null,"Uptime")),
+          React.createElement("div",{className:"jw-neon-stat"},React.createElement("strong",null,"24/7"),React.createElement("span",null,"Support"))
+        )
+      ),
+      React.createElement("div",{className:"jw-neon-cards"},
+        [
+          {icon:Rocket,title:"Setup Cepat",text:"Daftar, masuk, dan langsung ngerti flow-nya."},
+          {icon:PlugZap,title:"Integrasi Lengkap",text:"Nyambung dengan printer, scanner, dan kebutuhan toko."},
+          {icon:ShieldCheck,title:"Aman & Terpercaya",text:"Data tersimpan dan bisa dibackup saat dibutuhkan."},
+          {icon:Tag,title:"Harga Bersahabat",text:"Pilih paket yang paling masuk sama ritme tokonya."}
+        ].map(x=>React.createElement("div",{key:x.title,className:"jw-neon-card"},
+          React.createElement("div",{className:"icon"},React.createElement(x.icon,{className:"w-5 h-5"})),
+          React.createElement("div",null,React.createElement("strong",null,x.title),React.createElement("span",null,x.text))
+        ))
+      )
+    )
+  );
+}
+
 function LandingPage({ onLogin, onRegister, onViewMenu, onAdminLogin, settings }) {
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
@@ -1898,24 +2203,31 @@ function LandingPage({ onLogin, onRegister, onViewMenu, onAdminLogin, settings }
       /* @__PURE__ */ React.createElement("button", { onClick: onViewMenu, className: "jw-secondary px-4 py-2.5 text-left" }, "Lihat Menu"),
       /* @__PURE__ */ React.createElement("button", { onClick: onRegister, className: "jw-primary px-4 py-2.5 text-left" }, "Coba Gratis")),
 
-    /* @__PURE__ */ React.createElement("section", { id: "beranda", className: "jw-hero" }, /* @__PURE__ */ React.createElement(LandingLineArtBackdrop, null), /* @__PURE__ */ React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 lg:pt-14 pb-14 sm:pb-16 lg:pb-20 grid lg:grid-cols-[.92fr_1.08fr] gap-8 lg:gap-12 items-center" },
-      /* @__PURE__ */ React.createElement("div", { className: "relative z-10" },
-        /* @__PURE__ */ React.createElement("div", { className: "jw-kicker mb-5" }, /* @__PURE__ */ React.createElement(Sparkles, { className: "w-4 h-4" }), "POS & MANAJEMEN TOKO YANG NGGAK RIBET"),
-        /* @__PURE__ */ React.createElement("h1", { className: "jw-title text-5xl sm:text-6xl text-stone-900" }, "Bikin toko lebih ", /* @__PURE__ */ React.createElement("span", { className: "p" }, "rapi"), ", kerja lebih ", /* @__PURE__ */ React.createElement("span", { className: "y" }, "cepat"), ", keputusan lebih ", /* @__PURE__ */ React.createElement("span", { className: "r" }, "tepat.")),
-        /* @__PURE__ */ React.createElement("p", { className: "mt-6 text-slate-600 text-base sm:text-lg max-w-xl leading-relaxed" }, "Kasir, produk, stok, barcode, pelanggan, supplier, laporan, backup data, dan akses pengguna tetap lengkap — sekarang dengan pengalaman yang lebih modern dan ringan."),
-        /* @__PURE__ */ React.createElement("div", { className: "mt-8 flex flex-wrap gap-3" },
-          /* @__PURE__ */ React.createElement("button", { onClick: onRegister, className: "jw-primary inline-flex items-center gap-2 px-6 py-3.5 font-semibold text-sm" }, "Coba Gratis Sekarang ", /* @__PURE__ */ React.createElement(ArrowRight, { className: "w-4 h-4" })),
-          /* @__PURE__ */ React.createElement("button", { onClick: onLogin, className: "jw-secondary inline-flex items-center gap-2 px-6 py-3.5 font-semibold text-sm" }, /* @__PURE__ */ React.createElement(Play, { className: "w-4 h-4" }), " Lihat Demo")),
-        /* @__PURE__ */ React.createElement("div", { className: "mt-8 flex flex-wrap gap-2" }, [{icon:ScanLine,text:"Scan Barcode"},{icon:Boxes,text:"Stok Real-time"},{icon:FileSpreadsheet,text:"Excel"},{icon:FileDown,text:"PDF"},{icon:Download,text:"Backup Data"}].map((b) => /* @__PURE__ */ React.createElement("span", { key:b.text, className:"jw-chip inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold" }, /* @__PURE__ */ React.createElement(b.icon,{className:"w-3.5 h-3.5 text-violet-600"}), b.text)))),
-      /* @__PURE__ */ React.createElement("div", { className: "jw-visual" },
-        /* @__PURE__ */ React.createElement(LineArt, { className: "jw-art-a", kind: "spark" }),
-        /* @__PURE__ */ React.createElement(LineArt, { className: "jw-art-b yellow", kind: "wave" }),
-        /* @__PURE__ */ React.createElement(LineArt, { className: "jw-art-c red", kind: "receipt" }),
-        /* @__PURE__ */ React.createElement("div", { className: "jw-pos-card" },
-          /* @__PURE__ */ React.createElement("div", { className: "mock-nav" }, /* @__PURE__ */ React.createElement(Logo, { logoUrl: "" }), /* @__PURE__ */ React.createElement("div", { className: "mock-search" })),
-          /* @__PURE__ */ React.createElement("div", { className: "jw-metric-grid" }, metric("Penjualan Hari Ini", "Rp 12.560.000", "+12,5%"), metric("Transaksi", "128", "+8,3%"), metric("Stok Menipis", "8", "Perlu dicek", true)),
-          /* @__PURE__ */ React.createElement("div", { className: "jw-chart" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between text-[10px] mb-2" }, /* @__PURE__ */ React.createElement("strong", null, "Grafik Penjualan"), /* @__PURE__ */ React.createElement("span", { className:"text-slate-400" }, "7 hari terakhir")), /* @__PURE__ */ React.createElement("svg", { viewBox:"0 0 420 120", preserveAspectRatio:"none" }, /* @__PURE__ */ React.createElement("polyline", { points:"0,103 55,78 110,86 170,45 225,62 280,30 340,44 420,12", fill:"none", stroke:"#5B34E6", strokeWidth:"4", strokeLinecap:"round" }), /* @__PURE__ */ React.createElement("polyline", { points:"0,112 55,101 110,90 170,98 225,78 280,84 340,70 420,58", fill:"none", stroke:"#FFC83D", strokeWidth:"3", strokeLinecap:"round" })))),
-        /* @__PURE__ */ React.createElement("div", { className: "jw-mini-receipt" }, /* @__PURE__ */ React.createElement("div", { className:"text-xs font-extrabold mb-2" }, "TRANSAKSI #00128"), ["Kopi Arabica","Gula Pasir 1kg","Susu UHT"].map((x,i)=>/* @__PURE__ */ React.createElement("div",{key:x,className:"receipt-row"},/* @__PURE__ */ React.createElement("span",null,x),/* @__PURE__ */ React.createElement("span",null,rupiah([25000,15000,18000][i])))), /* @__PURE__ */ React.createElement("div",{className:"receipt-total"},/* @__PURE__ */ React.createElement("span",null,"TOTAL"),/* @__PURE__ */ React.createElement("span",null,"Rp 58.000"))))))),
+    /* @__PURE__ */ React.createElement("section",{id:"beranda",className:"jw-neon-hero"},
+      /* @__PURE__ */ React.createElement("div",{className:"jw-neon-grid"}),
+      /* @__PURE__ */ React.createElement(NeonOrbit,null),
+      /* @__PURE__ */ React.createElement("div",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 sm:pt-16 lg:pt-20 pb-16 grid lg:grid-cols-[.9fr_1.1fr] gap-10 items-center relative z-10"},
+        /* @__PURE__ */ React.createElement("div",null,
+          /* @__PURE__ */ React.createElement("span",{className:"jw-neon-kicker"},/* @__PURE__ */ React.createElement(Sparkles,{className:"w-3.5 h-3.5"}),"Sistem POS modern untuk semua usaha"),
+          /* @__PURE__ */ React.createElement("h1",{className:"jw-neon-title"},"Kelola Toko Jadi ",/* @__PURE__ */ React.createElement("span",{className:"yellow"},"Gampang")," & ",/* @__PURE__ */ React.createElement("span",{className:"pink"},"Gacor")),
+          /* @__PURE__ */ React.createElement("p",{className:"jw-neon-copy"},"Dari stok, penjualan, barcode, sampai laporan — semua ada dalam satu sistem. Fokus jualan, biar JAWARA yang bantu urus sisanya."),
+          /* @__PURE__ */ React.createElement("div",{className:"jw-neon-benefits"},
+            /* @__PURE__ */ React.createElement("div",{className:"jw-neon-benefit"},/* @__PURE__ */ React.createElement("div",{className:"ico"},/* @__PURE__ */ React.createElement(Sparkles,{className:"w-4 h-4"})),/* @__PURE__ */ React.createElement("div",null,/* @__PURE__ */ React.createElement("strong",null,"Mudah Digunakan"),/* @__PURE__ */ React.createElement("span",null,"Antarmuka simpel, cepat nyambung"))),
+            /* @__PURE__ */ React.createElement("div",{className:"jw-neon-benefit"},/* @__PURE__ */ React.createElement("div",{className:"ico"},/* @__PURE__ */ React.createElement(ShieldCheck,{className:"w-4 h-4"})),/* @__PURE__ */ React.createElement("div",null,/* @__PURE__ */ React.createElement("strong",null,"Data Aman"),/* @__PURE__ */ React.createElement("span",null,"Backup dan ekspor saat dibutuhkan"))),
+            /* @__PURE__ */ React.createElement("div",{className:"jw-neon-benefit"},/* @__PURE__ */ React.createElement("div",{className:"ico"},/* @__PURE__ */ React.createElement(BarChart3,{className:"w-4 h-4"})),/* @__PURE__ */ React.createElement("div",null,/* @__PURE__ */ React.createElement("strong",null,"Laporan Real-time"),/* @__PURE__ */ React.createElement("span",null,"Pantau performa kapan aja")))
+          ),
+          /* @__PURE__ */ React.createElement("div",{className:"jw-neon-actions"},
+            /* @__PURE__ */ React.createElement("button",{onClick:onRegister,className:"jw-btn-yellow"},"Coba Gratis Sekarang",/* @__PURE__ */ React.createElement(ArrowRight,{className:"w-4 h-4"})),
+            /* @__PURE__ */ React.createElement("button",{onClick:onLogin,className:"jw-btn-outline"},"Lihat Demo",/* @__PURE__ */ React.createElement(Play,{className:"w-4 h-4"}))
+          )
+        ),
+        /* @__PURE__ */ React.createElement("div",{className:"jw-mascot-stage"},
+          /* @__PURE__ */ React.createElement("div",{className:"stage-glow"}),
+          /* @__PURE__ */ React.createElement(NeonRoosterMark,null),
+          /* @__PURE__ */ React.createElement(NeonPosMock,null)
+        )
+      )
+    ), /* @__PURE__ */ React.createElement(NeonFeatureBand,null), /* @__PURE__ */ React.createElement(NeonWhySection,null)),
 
     /* @__PURE__ */ React.createElement("section", { id:"fitur", className:"jw-section jw-feature-section py-20" }, /* @__PURE__ */ React.createElement("div", { className:"max-w-7xl mx-auto px-5 sm:px-8" },
       /* @__PURE__ */ React.createElement("div", { className:"grid lg:grid-cols-[1fr_.7fr] gap-8 items-end mb-12" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className:"text-xs font-extrabold tracking-[.18em] text-violet-600 mb-3" }, "FITUR LENGKAP"), /* @__PURE__ */ React.createElement("h2", { className:"text-3xl sm:text-4xl font-extrabold tracking-tight" }, "Fungsinya tetap lengkap. ", /* @__PURE__ */ React.createElement("span",{className:"text-violet-600"},"Tampilannya yang naik kelas."))), /* @__PURE__ */ React.createElement("p", { className:"text-sm sm:text-base text-slate-500 leading-relaxed" }, "Tidak ada fitur yang dihapus. Semua modul existing tetap dipertahankan, termasuk impor/ekspor Excel, laporan PDF, backup JSON, role & permission, serta pembayaran.")),
