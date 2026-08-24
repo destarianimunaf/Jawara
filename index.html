@@ -600,6 +600,27 @@
   @media(max-width:860px){.jw-safe-access-grid{grid-template-columns:1fr}.jw-safe-vs{position:relative;left:auto;top:auto;transform:rotate(-5deg);margin:-6px auto}.jw-safe-plan{min-height:auto}}
   @media(max-width:600px){.jw-safe-plan{padding:22px;border-radius:23px}.jw-safe-prices{grid-template-columns:repeat(3,1fr)}}
 
+
+  /* v7 — restore Pengelola Sistem entry point without changing auth logic */
+  .jw-admin-entry{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 12px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.04);
+    color:rgba(255,255,255,.68)!important;
+    font-size:12px;
+    font-weight:700;
+    transition:background .18s ease,color .18s ease,border-color .18s ease;
+  }
+  .jw-admin-entry:hover{
+    background:rgba(255,255,255,.08);
+    border-color:rgba(255,200,61,.28);
+    color:#fff!important;
+  }
+
 </style>
 </head>
 <body>
@@ -1615,12 +1636,18 @@ function LandingPage({ onLogin, onRegister, onViewMenu, onAdminLogin, settings }
             /* @__PURE__ */ React.createElement("div",{className:"footer-jawara"},"JAWA",/* @__PURE__ */ React.createElement("span",null,"RA")),
             /* @__PURE__ */ React.createElement("p",{className:"mt-6 max-w-xl text-sm leading-relaxed text-white/45"},"Kasir, stok, barcode, pelanggan, supplier, dan laporan — satu flow yang lebih sat-set tanpa bikin operasional toko terasa ribet.")
           ),
-          /* @__PURE__ */ React.createElement("div",{className:"flex flex-wrap gap-x-6 gap-y-3 text-sm"},
-            /* @__PURE__ */ React.createElement("a",{href:"#beranda"},"Beranda"),
-            /* @__PURE__ */ React.createElement("a",{href:"#fitur"},"Fitur"),
-            /* @__PURE__ */ React.createElement("a",{href:"#keunggulan"},"Keunggulan"),
-            /* @__PURE__ */ React.createElement("a",{href:"#alur"},"Alur"),
-            /* @__PURE__ */ React.createElement("a",{href:"#demo-vs-subscribe"},"Demo vs Subscribe")
+          /* @__PURE__ */ React.createElement("div",{className:"flex flex-col items-start lg:items-end gap-4"},
+            /* @__PURE__ */ React.createElement("div",{className:"flex flex-wrap gap-x-6 gap-y-3 text-sm"},
+              /* @__PURE__ */ React.createElement("a",{href:"#beranda"},"Beranda"),
+              /* @__PURE__ */ React.createElement("a",{href:"#fitur"},"Fitur"),
+              /* @__PURE__ */ React.createElement("a",{href:"#keunggulan"},"Keunggulan"),
+              /* @__PURE__ */ React.createElement("a",{href:"#alur"},"Alur"),
+              /* @__PURE__ */ React.createElement("a",{href:"#demo-vs-subscribe"},"Demo vs Subscribe")
+            ),
+            /* @__PURE__ */ React.createElement("button",{type:"button",onClick:onAdminLogin,className:"jw-admin-entry"},
+              /* @__PURE__ */ React.createElement(Crown,{className:"w-4 h-4 text-[#FFC83D]"}),
+              "Masuk Pengelola Sistem"
+            )
           )
         ),
         /* @__PURE__ */ React.createElement("div",{className:"footer-rule pt-5 flex flex-col sm:flex-row justify-between gap-3"},
