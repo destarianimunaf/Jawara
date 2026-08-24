@@ -541,6 +541,34 @@
     }
   }
 
+
+  /* v4 landing polish */
+  .jw-section{position:relative;isolation:isolate}
+  .jw-section + .jw-section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 40px));height:1px;background:linear-gradient(90deg,transparent,rgba(91,52,230,.13) 14%,rgba(23,21,31,.08) 50%,rgba(244,81,98,.10) 86%,transparent);pointer-events:none}
+  .jw-feature-section{background:#F9F8FC!important}
+  .jw-feature-card,.jw-clean-card{border:1px solid rgba(77,65,107,.105)!important;box-shadow:0 10px 32px rgba(31,23,56,.045)}
+  .jw-feature-card:hover,.jw-clean-card:hover{border-color:rgba(91,52,230,.20)!important}
+  .jw-process-wrap{border:1px solid rgba(77,65,107,.10);background:#fff;border-radius:28px;box-shadow:0 18px 60px rgba(38,28,71,.05);overflow:hidden}
+  .jw-process-item{position:relative;padding:26px;min-height:180px}
+  .jw-process-item:not(:last-child)::after{content:"";position:absolute;top:24px;right:0;width:1px;height:calc(100% - 48px);background:rgba(77,65,107,.10)}
+  .jw-step-no{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;background:var(--jw-purple-100);color:var(--jw-purple);border:1px solid rgba(91,52,230,.10)}
+  .jw-usecase{min-height:195px;border-radius:24px;padding:24px;position:relative;overflow:hidden;border:1px solid rgba(77,65,107,.10);background:#fff}
+  .jw-usecase::after{content:"";position:absolute;width:86px;height:86px;border-radius:50%;right:-26px;bottom:-30px;background:var(--case-tint,#EEE9FF);opacity:.9}
+  .jw-usecase .case-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--case-tint,#EEE9FF);color:var(--case-color,#5B34E6);border:1px solid rgba(77,65,107,.08)}
+  #kontak{background:#F8F7FB!important;padding-top:64px!important;padding-bottom:64px!important}
+  #kontak>div{border:1px solid rgba(255,255,255,.10);background:radial-gradient(circle at 85% 30%,rgba(255,200,61,.12),transparent 24%),radial-gradient(circle at 8% 80%,rgba(244,81,98,.12),transparent 22%),#17151F;border-radius:30px;padding:48px!important;box-shadow:0 24px 70px rgba(23,21,31,.12)}
+  .jw-footer{background:#111017;color:#fff}
+  .jw-footer .jawara-brand-word{color:#fff!important}
+  .jw-footer .jawara-brand-word b{color:#B8A7FF!important}
+  .jw-footer .jawara-brand-mark{background:#fff}
+  .jw-footer-grid{display:grid;grid-template-columns:1.5fr .8fr .9fr 1fr;gap:46px}
+  .jw-footer-title{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.48);margin-bottom:14px}
+  .jw-footer a,.jw-footer button{color:rgba(255,255,255,.66)}
+  .jw-footer a:hover,.jw-footer button:hover{color:#fff}
+  .jw-footer-bottom{border-top:1px solid rgba(255,255,255,.08);margin-top:34px;padding-top:20px}
+  @media(max-width:900px){.jw-process-item:not(:last-child)::after{top:auto;right:24px;left:24px;bottom:0;width:auto;height:1px}.jw-footer-grid{grid-template-columns:1fr 1fr;gap:32px}}
+  @media(max-width:640px){#kontak>div{padding:28px!important;border-radius:24px}.jw-section + .jw-section::before{width:calc(100% - 28px)}.jw-process-item{min-height:auto;padding:22px}.jw-footer-grid{grid-template-columns:1fr;gap:26px}}
+
 </style>
 </head>
 <body>
@@ -1352,6 +1380,89 @@ function LineArt({ className = "", kind = "spark" }) {
   return /* @__PURE__ */ React.createElement("span", { className: `jw-lineart ${className}`, "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 130 95" }, /* @__PURE__ */ React.createElement("path", { className: "draw", d: "M14 64c20-7 14-31 37-31 21 0 21 27 43 26 12-1 18-7 25-17" }), /* @__PURE__ */ React.createElement("polyline", { className: "draw float", points: "91,14 96,25 108,28 99,36 101,48 91,42 80,48 83,36 74,28 86,25 91,14" })));
 }
 
+
+function LandingProcessSection() {
+  const steps = [
+    { n:"01", icon:Package, title:"Produk masuk", text:"Tambah manual atau impor Excel. Barcode bisa dibuat otomatis." },
+    { n:"02", icon:ScanLine, title:"Scan & jual", text:"Cari produk atau scan barcode, pilih member, diskon, lalu bayar." },
+    { n:"03", icon:Boxes, title:"Stok bergerak", text:"Stok mengikuti transaksi dan kembali saat transaksi dibatalkan." },
+    { n:"04", icon:FileText, title:"Laporan siap", text:"Omzet, transaksi, invoice, Excel, PDF, dan backup tetap tersedia." }
+  ];
+  return React.createElement("section",{id:"alur",className:"jw-section py-20 bg-[#FAF9FC]"},
+    React.createElement("div",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"},
+      React.createElement("div",{className:"max-w-2xl mb-10"},
+        React.createElement("p",{className:"text-xs font-extrabold tracking-[.18em] text-[#D99500] mb-3"},"ALUR KERJA"),
+        React.createElement("h2",{className:"text-3xl sm:text-4xl font-extrabold tracking-tight"},"Dari barang masuk sampai laporan, alurnya nyambung."),
+        React.createElement("p",{className:"mt-3 text-sm sm:text-base text-slate-500 leading-relaxed"},"Aktivitas harian toko dibuat sebagai satu alur yang jelas, bukan menu-menu yang terasa terpisah.")
+      ),
+      React.createElement("div",{className:"jw-process-wrap grid md:grid-cols-4"},
+        steps.map((x,i)=>React.createElement("div",{key:x.n,className:"jw-process-item reveal",style:{transitionDelay:`${i*65}ms`}},
+          React.createElement("div",{className:"flex items-center justify-between mb-6"},
+            React.createElement("span",{className:"jw-step-no"},x.n),
+            React.createElement(x.icon,{className:"w-5 h-5 text-violet-600"})
+          ),
+          React.createElement("h3",{className:"font-bold text-base mb-2"},x.title),
+          React.createElement("p",{className:"text-sm text-slate-500 leading-relaxed"},x.text)
+        ))
+      )
+    )
+  );
+}
+function LandingUseCaseSection() {
+  const cases = [
+    {icon:Store,title:"Toko Retail",text:"Produk banyak, transaksi rutin, stok perlu dipantau.",color:"#5B34E6",tint:"#EEE9FF"},
+    {icon:Coffee,title:"Kafe & Kedai",text:"Menu cepat dicari, transaksi ringkas, laporan harian.",color:"#D99500",tint:"#FFF4C7"},
+    {icon:Box,title:"Warung & Kios",text:"Ringan untuk dipakai sehari-hari tanpa setup rumit.",color:"#F45162",tint:"#FFE7EA"},
+    {icon:BarcodeIcon,title:"Usaha Berbarcode",text:"Generate, scan, dan cetak label barcode dari satu sistem.",color:"#168B68",tint:"#E6F7F1"}
+  ];
+  return React.createElement("section",{id:"cocok-untuk",className:"jw-section py-20 bg-white"},
+    React.createElement("div",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"},
+      React.createElement("div",{className:"flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-10"},
+        React.createElement("div",null,
+          React.createElement("p",{className:"text-xs font-extrabold tracking-[.18em] text-violet-600 mb-3"},"DIBUAT UNTUK TOKO NYATA"),
+          React.createElement("h2",{className:"text-3xl sm:text-4xl font-extrabold tracking-tight"},"Satu sistem, banyak tipe usaha.")
+        ),
+        React.createElement("p",{className:"text-sm sm:text-base text-slate-500 max-w-md leading-relaxed"},"Mulai dari warung sampai retail kecil yang butuh transaksi cepat, stok jelas, dan laporan yang gampang dibaca.")
+      ),
+      React.createElement("div",{className:"grid sm:grid-cols-2 lg:grid-cols-4 gap-4"},
+        cases.map((x,i)=>React.createElement("div",{key:x.title,className:"jw-usecase reveal",style:{"--case-color":x.color,"--case-tint":x.tint,transitionDelay:`${i*65}ms`}},
+          React.createElement("div",{className:"case-icon mb-8"},React.createElement(x.icon,{className:"w-5 h-5"})),
+          React.createElement("h3",{className:"font-bold mb-2"},x.title),
+          React.createElement("p",{className:"text-sm text-slate-500 leading-relaxed max-w-[230px]"},x.text)
+        ))
+      )
+    )
+  );
+}
+function LandingFooterLinks({onAdminLogin,onViewMenu,onLogin,onRegister}) {
+  return React.createElement(React.Fragment,null,
+    React.createElement("div",{className:"jw-footer-grid"},
+      React.createElement("div",null,
+        React.createElement(Logo,{logoUrl:""}),
+        React.createElement("p",{className:"mt-4 text-sm leading-relaxed text-white/50 max-w-sm"},"Kasir dan manajemen toko untuk transaksi, stok, barcode, pelanggan, supplier, dan laporan."),
+        React.createElement("div",{className:"mt-5 flex flex-wrap gap-2"},["POS","Stok","Barcode","Laporan"].map(x=>React.createElement("span",{key:x,className:"px-2.5 py-1 rounded-full border border-white/10 text-[10px] font-semibold text-white/45"},x)))
+      ),
+      React.createElement("div",null,
+        React.createElement("p",{className:"jw-footer-title"},"Navigasi"),
+        React.createElement("div",{className:"flex flex-col gap-3 text-sm"},React.createElement("a",{href:"#beranda"},"Beranda"),React.createElement("a",{href:"#fitur"},"Fitur"),React.createElement("a",{href:"#keunggulan"},"Keunggulan"),React.createElement("a",{href:"#alur"},"Alur Kerja"))
+      ),
+      React.createElement("div",null,
+        React.createElement("p",{className:"jw-footer-title"},"Sistem"),
+        React.createElement("div",{className:"flex flex-col gap-3 text-sm"},React.createElement("button",{onClick:onViewMenu,className:"text-left"},"Lihat Menu"),React.createElement("button",{onClick:onLogin,className:"text-left"},"Masuk Toko"),React.createElement("button",{onClick:onRegister,className:"text-left"},"Daftar"))
+      ),
+      React.createElement("div",null,
+        React.createElement("p",{className:"jw-footer-title"},"Pengelola"),
+        React.createElement("p",{className:"text-sm text-white/45 leading-relaxed mb-4"},"Akses khusus pengelolaan akun toko dan langganan."),
+        React.createElement("button",{onClick:onAdminLogin,className:"inline-flex items-center gap-2 text-sm font-semibold"},React.createElement(Crown,{className:"w-4 h-4 text-[#FFC83D]"}),"Pengelola Sistem")
+      )
+    ),
+    React.createElement("div",{className:"jw-footer-bottom flex flex-col sm:flex-row justify-between items-center gap-3"},
+      React.createElement(CopyrightFooter,{className:"text-xs text-white/35"}),
+      React.createElement("p",{className:"text-[11px] text-white/30"},"JAWARA · DestaLabs")
+    )
+  );
+}
+
 function LandingPage({ onLogin, onRegister, onViewMenu, onAdminLogin, settings }) {
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
@@ -1404,19 +1515,21 @@ function LandingPage({ onLogin, onRegister, onViewMenu, onAdminLogin, settings }
           /* @__PURE__ */ React.createElement("div", { className: "jw-chart" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between text-[10px] mb-2" }, /* @__PURE__ */ React.createElement("strong", null, "Grafik Penjualan"), /* @__PURE__ */ React.createElement("span", { className:"text-slate-400" }, "7 hari terakhir")), /* @__PURE__ */ React.createElement("svg", { viewBox:"0 0 420 120", preserveAspectRatio:"none" }, /* @__PURE__ */ React.createElement("polyline", { points:"0,103 55,78 110,86 170,45 225,62 280,30 340,44 420,12", fill:"none", stroke:"#5B34E6", strokeWidth:"4", strokeLinecap:"round" }), /* @__PURE__ */ React.createElement("polyline", { points:"0,112 55,101 110,90 170,98 225,78 280,84 340,70 420,58", fill:"none", stroke:"#FFC83D", strokeWidth:"3", strokeLinecap:"round" })))),
         /* @__PURE__ */ React.createElement("div", { className: "jw-mini-receipt" }, /* @__PURE__ */ React.createElement("div", { className:"text-xs font-extrabold mb-2" }, "TRANSAKSI #00128"), ["Kopi Arabica","Gula Pasir 1kg","Susu UHT"].map((x,i)=>/* @__PURE__ */ React.createElement("div",{key:x,className:"receipt-row"},/* @__PURE__ */ React.createElement("span",null,x),/* @__PURE__ */ React.createElement("span",null,rupiah([25000,15000,18000][i])))), /* @__PURE__ */ React.createElement("div",{className:"receipt-total"},/* @__PURE__ */ React.createElement("span",null,"TOTAL"),/* @__PURE__ */ React.createElement("span",null,"Rp 58.000"))))))),
 
-    /* @__PURE__ */ React.createElement("section", { id:"fitur", className:"jw-feature-section py-20" }, /* @__PURE__ */ React.createElement("div", { className:"max-w-7xl mx-auto px-5 sm:px-8" },
+    /* @__PURE__ */ React.createElement("section", { id:"fitur", className:"jw-section jw-feature-section py-20" }, /* @__PURE__ */ React.createElement("div", { className:"max-w-7xl mx-auto px-5 sm:px-8" },
       /* @__PURE__ */ React.createElement("div", { className:"grid lg:grid-cols-[1fr_.7fr] gap-8 items-end mb-12" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className:"text-xs font-extrabold tracking-[.18em] text-violet-600 mb-3" }, "FITUR LENGKAP"), /* @__PURE__ */ React.createElement("h2", { className:"text-3xl sm:text-4xl font-extrabold tracking-tight" }, "Fungsinya tetap lengkap. ", /* @__PURE__ */ React.createElement("span",{className:"text-violet-600"},"Tampilannya yang naik kelas."))), /* @__PURE__ */ React.createElement("p", { className:"text-sm sm:text-base text-slate-500 leading-relaxed" }, "Tidak ada fitur yang dihapus. Semua modul existing tetap dipertahankan, termasuk impor/ekspor Excel, laporan PDF, backup JSON, role & permission, serta pembayaran.")),
       /* @__PURE__ */ React.createElement("div", { className:"grid sm:grid-cols-2 lg:grid-cols-4 gap-4" }, features.map((f,i)=>/* @__PURE__ */ React.createElement("button", { key:f.title,onClick:onLogin,className:"reveal jw-feature-card text-left rounded-2xl p-5 transition-all",style:{transitionDelay:`${(i%8)*45}ms`} }, /* @__PURE__ */ React.createElement("div",{className:"flex justify-between items-start"},/* @__PURE__ */ React.createElement("div",{className:"jw-feature-icon w-11 h-11 rounded-xl flex items-center justify-center"},/* @__PURE__ */ React.createElement(f.icon,{className:"w-5 h-5"})),/* @__PURE__ */ React.createElement("span",{className:"feature-number text-[10px] font-mono-nota"},String(i+1).padStart(2,"0"))),/* @__PURE__ */ React.createElement("h3",{className:"font-bold mt-5 mb-1.5"},f.title),/* @__PURE__ */ React.createElement("p",{className:"text-sm leading-relaxed"},f.desc),/* @__PURE__ */ React.createElement("div",{className:"mt-4 h-[3px] w-14 rounded-full",style:{background:["#5B34E6","#FFC83D","#F45162","#21A179"][i%4]}}))))),
 
-    /* @__PURE__ */ React.createElement("section", { id:"keunggulan", className:"py-20 bg-white relative overflow-hidden" }, /* @__PURE__ */ React.createElement(LineArt,{className:"jw-art-a red",kind:"wave"}), /* @__PURE__ */ React.createElement("div", { className:"max-w-6xl mx-auto px-5 sm:px-8" },
+    /* @__PURE__ */ React.createElement("section", { id:"keunggulan", className:"jw-section py-20 bg-white relative overflow-hidden" }, /* @__PURE__ */ React.createElement(LineArt,{className:"jw-art-a red",kind:"wave"}), /* @__PURE__ */ React.createElement("div", { className:"max-w-6xl mx-auto px-5 sm:px-8" },
       /* @__PURE__ */ React.createElement("p", { className:"text-xs font-extrabold tracking-[.18em] text-[#F45162] mb-3" }, "KENAPA JAWARA"),
       /* @__PURE__ */ React.createElement("h2", { className:"text-3xl sm:text-4xl font-extrabold tracking-tight mb-10" }, "Sistem ringan, kontrol tetap penuh."),
       /* @__PURE__ */ React.createElement("div", { className:"grid md:grid-cols-3 gap-4" },
         [{icon:ShieldCheck,title:"Data di tangan Anda",text:"Data tersimpan di browser dan bisa diekspor/impor kapan saja."},{icon:UserCog,title:"Hak akses fleksibel",text:"Kasir, Admin, dan Pengelola Sistem tetap punya akses sesuai perannya."},{icon:FileSpreadsheet,title:"Laporan siap pakai",text:"Produk Excel, laporan keuangan Excel/PDF, invoice, dan barcode tetap tersedia."}].map((x,i)=>/* @__PURE__ */ React.createElement("div",{key:x.title,className:"reveal rounded-2xl border border-slate-100 bg-[#FAF9FC] p-6",style:{transitionDelay:`${i*70}ms`}},/* @__PURE__ */ React.createElement(x.icon,{className:"w-6 h-6 text-violet-600 mb-5"}),/* @__PURE__ */ React.createElement("h3",{className:"font-bold mb-2"},x.title),/* @__PURE__ */ React.createElement("p",{className:"text-sm text-slate-500 leading-relaxed"},x.text))))),
 
-    /* @__PURE__ */ React.createElement("section", { id:"kontak", className:"py-20 bg-[#17151F] text-white" }, /* @__PURE__ */ React.createElement("div", { className:"max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[1fr_auto] gap-8 items-center" }, /* @__PURE__ */ React.createElement("div",null,/* @__PURE__ */ React.createElement("p",{className:"text-xs font-extrabold tracking-[.18em] text-[#FFC83D] mb-3"},"MULAI SEKARANG"),/* @__PURE__ */ React.createElement("h2",{className:"text-3xl sm:text-4xl font-extrabold tracking-tight"},"Tokonya tetap. Cara kerjanya jadi lebih enak."),/* @__PURE__ */ React.createElement("p",{className:"mt-3 text-white/55 max-w-2xl"},"Coba seluruh alur Jawara dari penjualan sampai laporan tanpa kehilangan fitur yang sudah Anda bangun.")),/* @__PURE__ */ React.createElement("button",{onClick:onRegister,className:"px-6 py-3.5 rounded-xl bg-[#FFC83D] text-stone-900 font-bold inline-flex items-center gap-2"},"Coba Gratis ",/* @__PURE__ */ React.createElement(ArrowRight,{className:"w-4 h-4"}))))),
+    /* @__PURE__ */ React.createElement(LandingProcessSection, null),
+    /* @__PURE__ */ React.createElement(LandingUseCaseSection, null),
+    /* @__PURE__ */ React.createElement("section", { id:"kontak", className:"jw-section py-20 bg-[#17151F] text-white" }, /* @__PURE__ */ React.createElement("div", { className:"max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[1fr_auto] gap-8 items-center" }, /* @__PURE__ */ React.createElement("div",null,/* @__PURE__ */ React.createElement("p",{className:"text-xs font-extrabold tracking-[.18em] text-[#FFC83D] mb-3"},"MULAI SEKARANG"),/* @__PURE__ */ React.createElement("h2",{className:"text-3xl sm:text-4xl font-extrabold tracking-tight"},"Tokonya tetap. Cara kerjanya jadi lebih enak."),/* @__PURE__ */ React.createElement("p",{className:"mt-3 text-white/55 max-w-2xl"},"Coba seluruh alur Jawara dari penjualan sampai laporan tanpa kehilangan fitur yang sudah Anda bangun.")),/* @__PURE__ */ React.createElement("button",{onClick:onRegister,className:"px-6 py-3.5 rounded-xl bg-[#FFC83D] text-stone-900 font-bold inline-flex items-center gap-2"},"Coba Gratis ",/* @__PURE__ */ React.createElement(ArrowRight,{className:"w-4 h-4"}))))),
 
-    /* @__PURE__ */ React.createElement("footer", { className:"bg-[#17151F] border-t border-white/10 py-7" }, /* @__PURE__ */ React.createElement("div", { className:"max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4" }, /* @__PURE__ */ React.createElement(Logo,{logoUrl:""}), /* @__PURE__ */ React.createElement("div",{className:"flex items-center gap-4"},/* @__PURE__ */ React.createElement("button",{onClick:onAdminLogin,className:"text-xs text-white/45 hover:text-white inline-flex items-center gap-1.5"},/* @__PURE__ */ React.createElement(Crown,{className:"w-3.5 h-3.5"}),"Pengelola Sistem"),/* @__PURE__ */ React.createElement(CopyrightFooter,{className:"text-xs text-white/35"}))))));
+    /* @__PURE__ */ React.createElement("footer",{className:"jw-footer py-12"},/* @__PURE__ */ React.createElement("div",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"},/* @__PURE__ */ React.createElement(LandingFooterLinks,{onAdminLogin,onViewMenu,onLogin,onRegister})))));
 }
 function DashboardHome({ products, transactions, setActive }) {
   const totalToday = transactions.reduce((s, t) => s + t.total, 0);
