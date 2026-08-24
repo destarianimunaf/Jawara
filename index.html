@@ -703,6 +703,122 @@
   @media(max-width:960px){.jw-module-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:600px){.jw-module-grid{grid-template-columns:1fr}.jw-module-detail{grid-template-columns:1fr}.jw-theme-select{max-width:105px}}
 
+
+  /* =========================================================
+     v10 — dark-theme readability + remove stray white lines
+     ========================================================= */
+
+  /* Dark theme: keep sidebar/topbar logo and labels readable */
+  body[data-jawara-theme="dark"] .jawara-sidebar,
+  body[data-jawara-theme="dark"] .jawara-topbar {
+    color: var(--jw-text) !important;
+  }
+
+  body[data-jawara-theme="dark"] .jawara-sidebar .font-display,
+  body[data-jawara-theme="dark"] .jawara-sidebar .jawara-sidebar-brand-text,
+  body[data-jawara-theme="dark"] .jawara-sidebar .jawara-nav-label,
+  body[data-jawara-theme="dark"] .jawara-topbar .font-semibold,
+  body[data-jawara-theme="dark"] .jawara-topbar .text-slate-800,
+  body[data-jawara-theme="dark"] .jawara-topbar .text-slate-700 {
+    color: #F8FAFC !important;
+  }
+
+  body[data-jawara-theme="dark"] .jawara-sidebar .text-slate-500,
+  body[data-jawara-theme="dark"] .jawara-sidebar .text-slate-400,
+  body[data-jawara-theme="dark"] .jawara-topbar .text-slate-500,
+  body[data-jawara-theme="dark"] .jawara-topbar .text-slate-400 {
+    color: #94A3B8 !important;
+  }
+
+  /* Preserve the JAWARA mark itself in dark mode */
+  body[data-jawara-theme="dark"] .jawara-sidebar .jawara-brand-mark,
+  body[data-jawara-theme="dark"] .jawara-topbar .jawara-brand-mark {
+    background: #FFFFFF !important;
+    border-color: rgba(255,255,255,.9) !important;
+  }
+
+  body[data-jawara-theme="dark"] .jawara-sidebar .jawara-brand-mark::before,
+  body[data-jawara-theme="dark"] .jawara-topbar .jawara-brand-mark::before {
+    color: #5B34E6 !important;
+  }
+
+  /* Active menu should stay obvious on dark */
+  body[data-jawara-theme="dark"] .jawara-sidebar nav button.bg-violet-50,
+  body[data-jawara-theme="dark"] .jawara-sidebar nav button[class*="bg-violet"] {
+    background: #2B2242 !important;
+    color: #FFFFFF !important;
+  }
+
+  body[data-jawara-theme="dark"] .jawara-sidebar nav button.bg-violet-50 svg,
+  body[data-jawara-theme="dark"] .jawara-sidebar nav button[class*="bg-violet"] svg {
+    color: #C4B5FD !important;
+  }
+
+  /* Theme select itself must not become white-on-white */
+  body[data-jawara-theme="dark"] .jw-theme-select {
+    background: #171A22 !important;
+    color: #F8FAFC !important;
+    border-color: #313949 !important;
+  }
+
+  /* Remove unintended thin white line on landing/footer boundary */
+  .jw-footer-safe-brand,
+  .jw-footer,
+  footer {
+    border-top: 0 !important;
+    outline: 0 !important;
+    box-shadow: none;
+  }
+
+  .jw-footer-safe-brand::before,
+  .jw-footer-safe-brand::after,
+  .jw-footer::before,
+  .jw-footer::after {
+    display: none !important;
+  }
+
+  /* Section divider must not draw over footer/contact area */
+  #kontak.jw-section + footer::before,
+  footer.jw-section::before {
+    display: none !important;
+  }
+
+  /* Remove the white hairline appearing at login edges */
+  .bg-ink {
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .bg-ink::before,
+  .bg-ink::after {
+    display: none !important;
+  }
+
+  /* Login card: use a soft dark separator instead of any bright edge */
+  .bg-ink > div.relative,
+  .bg-ink .bg-nota-paper {
+    border-color: rgba(255,255,255,.08) !important;
+  }
+
+  /* Avoid 1px viewport seam caused by transforms/antialiasing */
+  body,
+  #root,
+  .jw-footer-safe-brand,
+  .bg-ink {
+    background-clip: padding-box;
+  }
+
+  /* Footer brand text should always be visibly contrasted */
+  .jw-footer-safe-brand .footer-jawara {
+    color: #FFFFFF !important;
+    text-shadow: none !important;
+  }
+
+  .jw-footer-safe-brand .footer-jawara span {
+    color: #FFC83D !important;
+  }
+
 </style>
 </head>
 <body>
