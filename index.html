@@ -158,6 +158,389 @@
   @media (prefers-reduced-motion: reduce) {
     .ar-badge, .ar-badge .ar-ring, .ar-badge .ar-core { animation: none; }
   }
+
+
+  /* ================================================================
+     JAWARA 2026 UI REDESIGN — lightweight line-art visual system
+     UI-only overrides: business logic, storage, permissions & features
+     remain untouched. Animations use transform/opacity only.
+     ================================================================ */
+  :root {
+    --jw-purple:#5B34E6;
+    --jw-purple-700:#4322BC;
+    --jw-purple-100:#EEE9FF;
+    --jw-yellow:#FFC83D;
+    --jw-yellow-100:#FFF4C7;
+    --jw-red:#F45162;
+    --jw-red-100:#FFE7EA;
+    --jw-ink:#17151F;
+    --jw-muted:#716C7D;
+    --jw-surface:#FFFFFF;
+    --jw-bg:#F8F7FB;
+    --jw-line:#EAE7F0;
+  }
+  html, body { background:var(--jw-bg); }
+  body { color:var(--jw-ink); }
+
+  /* Brand */
+  .jawara-brand { display:flex; align-items:center; gap:.7rem; min-width:0; }
+  .jawara-brand-mark {
+    width:38px; height:38px; flex:0 0 38px; position:relative;
+    border:3px solid var(--jw-purple); border-right-width:8px;
+    border-radius:11px 11px 16px 11px; transform:rotate(2deg);
+    background:#fff; box-shadow:0 7px 18px rgba(91,52,230,.12);
+  }
+  .jawara-brand-mark::after {
+    content:""; position:absolute; left:5px; bottom:-4px; width:18px; height:10px;
+    border:4px solid var(--jw-yellow); border-top:0; border-radius:0 0 18px 18px;
+    transform:rotate(-12deg);
+  }
+  .jawara-brand-mark::before {
+    content:""; position:absolute; right:-8px; top:-7px; width:9px; height:9px;
+    background:var(--jw-red); border:3px solid #fff; border-radius:50%;
+  }
+  .jawara-brand-word { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.15rem; font-weight:800; letter-spacing:-.035em; color:var(--jw-ink); white-space:nowrap; }
+  .jawara-brand-word b { color:var(--jw-purple); font-weight:800; }
+
+  /* Marketing */
+  .jawara-landing { background:#fff; color:var(--jw-ink); }
+  .jawara-landing .jw-header {
+    background:rgba(255,255,255,.86)!important; border-color:rgba(27,21,40,.08)!important;
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  }
+  .jw-hero {
+    position:relative; overflow:hidden; isolation:isolate;
+    background:
+      radial-gradient(circle at 84% 22%, rgba(91,52,230,.08), transparent 30%),
+      radial-gradient(circle at 18% 85%, rgba(255,200,61,.12), transparent 28%),
+      #fff;
+  }
+  .jw-hero::before {
+    content:""; position:absolute; width:520px; height:520px; border:1px solid rgba(91,52,230,.14);
+    border-radius:50%; right:-260px; top:-180px; z-index:-1;
+  }
+  .jw-hero::after {
+    content:""; position:absolute; width:180px; height:180px; border:1px dashed rgba(244,81,98,.25);
+    border-radius:50%; left:-80px; bottom:5%; z-index:-1;
+  }
+  .jw-kicker {
+    display:inline-flex; align-items:center; gap:.55rem; padding:.55rem .85rem; border-radius:999px;
+    background:var(--jw-yellow-100); color:#705200; border:1px solid rgba(255,200,61,.55);
+    font-size:.72rem; font-weight:800; letter-spacing:.04em;
+  }
+  .jw-title { font-family:'Plus Jakarta Sans',sans-serif!important; text-transform:none!important; letter-spacing:-.055em!important; line-height:1.01!important; font-weight:800!important; }
+  .jw-title .p{color:var(--jw-purple)} .jw-title .y{color:#D99500} .jw-title .r{color:var(--jw-red)}
+  .jw-primary { background:var(--jw-purple)!important; color:#fff!important; border-radius:14px!important; box-shadow:0 12px 30px rgba(91,52,230,.22)!important; }
+  .jw-primary:hover { background:var(--jw-purple-700)!important; transform:translateY(-1px); }
+  .jw-secondary { background:#fff!important; border:1px solid var(--jw-line)!important; border-radius:14px!important; color:var(--jw-ink)!important; }
+  .jw-chip { background:#fff!important; border:1px solid var(--jw-line)!important; color:var(--jw-muted)!important; border-radius:999px!important; box-shadow:0 6px 16px rgba(25,19,42,.04); }
+
+  .jw-visual { position:relative; min-height:455px; }
+  .jw-pos-card {
+    position:absolute; right:2%; top:5%; width:min(92%,500px); padding:18px;
+    background:rgba(255,255,255,.92); border:1px solid rgba(255,255,255,.95); border-radius:26px;
+    box-shadow:0 30px 80px rgba(46,34,87,.14); transform:rotate(1deg);
+  }
+  .jw-pos-card .mock-nav { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:14px; border-bottom:1px solid var(--jw-line); }
+  .jw-pos-card .mock-search { flex:1; max-width:250px; height:32px; border-radius:10px; background:#F7F6FA; border:1px solid #EFECF4; }
+  .jw-metric-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin-top:14px; }
+  .jw-metric { padding:13px; border:1px solid var(--jw-line); border-radius:15px; background:#fff; }
+  .jw-metric span{display:block;font-size:9px;color:#8A8493}.jw-metric strong{display:block;font-size:15px;margin-top:7px}.jw-metric em{font-size:9px;color:#1D9B67;font-style:normal}
+  .jw-metric.alert{background:var(--jw-red-100)} .jw-metric.alert em{color:var(--jw-red)}
+  .jw-chart { margin-top:10px; height:170px; border:1px solid var(--jw-line); border-radius:17px; background:linear-gradient(180deg,#fff,#FBFAFD); padding:15px; overflow:hidden; }
+  .jw-chart svg { width:100%; height:110px; overflow:visible; }
+  .jw-mini-receipt {
+    position:absolute; left:1%; bottom:5%; width:205px; background:#fff; border:1px solid var(--jw-line);
+    border-radius:22px; padding:16px; box-shadow:0 22px 50px rgba(49,36,95,.12); transform:rotate(-4deg); z-index:3;
+  }
+  .jw-mini-receipt .receipt-row{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#706B78;padding:5px 0;border-bottom:1px dashed #E8E4EC}
+  .jw-mini-receipt .receipt-total{display:flex;justify-content:space-between;font-weight:800;font-size:11px;padding-top:10px}
+
+  /* Lightweight animated line-art: SVG path drawing via dash offset. */
+  .jw-lineart { position:absolute; pointer-events:none; color:var(--jw-purple); opacity:.85; z-index:2; }
+  .jw-lineart svg{width:100%;height:100%;overflow:visible}
+  .jw-lineart path,.jw-lineart circle,.jw-lineart polyline{
+    vector-effect:non-scaling-stroke; stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;
+  }
+  .jw-lineart .draw { stroke-dasharray:180; stroke-dashoffset:180; animation:jwDraw 4.8s ease-in-out infinite; }
+  .jw-lineart .float { animation:jwFloat 4.4s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
+  .jw-lineart.red{color:var(--jw-red)} .jw-lineart.yellow{color:#E4A500}
+  @keyframes jwDraw { 0%,12%{stroke-dashoffset:180;opacity:.15} 42%,78%{stroke-dashoffset:0;opacity:1} 100%{stroke-dashoffset:-180;opacity:.15} }
+  @keyframes jwFloat { 0%,100%{transform:translate3d(0,0,0) rotate(0)} 50%{transform:translate3d(0,-9px,0) rotate(3deg)} }
+  .jw-art-a{width:150px;height:100px;right:5%;top:1%}.jw-art-b{width:135px;height:90px;left:37%;bottom:4%}.jw-art-c{width:100px;height:76px;right:0;bottom:13%}
+
+  .jw-feature-section { background:#F8F7FB!important; }
+  .jw-feature-card { background:#fff!important; color:var(--jw-ink)!important; border:1px solid var(--jw-line)!important; box-shadow:0 12px 34px rgba(40,29,75,.045); }
+  .jw-feature-card:hover { transform:translateY(-4px); box-shadow:0 18px 45px rgba(40,29,75,.09); border-color:rgba(91,52,230,.22)!important; }
+  .jw-feature-card h3{color:var(--jw-ink)!important}.jw-feature-card p,.jw-feature-card li{color:var(--jw-muted)!important}.jw-feature-card .feature-number{color:#B8B1C4!important}
+  .jw-feature-icon{background:var(--jw-purple-100)!important;color:var(--jw-purple)!important}
+
+  /* In-app shell. Keep all existing components/handlers; only visual layer changes. */
+  .jawara-shell { background:var(--jw-bg)!important; position:relative; }
+  .jawara-shell::before {
+    content:""; position:fixed; right:-120px; top:120px; width:320px; height:320px; border:1px dashed rgba(91,52,230,.09); border-radius:50%; pointer-events:none;
+  }
+  .jawara-sidebar {
+    background:rgba(255,255,255,.94)!important; border-color:var(--jw-line)!important;
+    box-shadow:8px 0 36px rgba(43,31,82,.045); backdrop-filter:blur(10px);
+  }
+  .jawara-sidebar nav button { border-radius:12px!important; transition:background .18s ease,color .18s ease,transform .18s ease!important; }
+  .jawara-sidebar nav button:hover { transform:translateX(2px); }
+  .jawara-sidebar nav button[class*="bg-violet-50"] { background:var(--jw-purple-100)!important;color:var(--jw-purple)!important; box-shadow:inset 3px 0 0 var(--jw-purple); }
+  .jawara-topbar {
+    height:70px!important; background:rgba(248,247,251,.82)!important; border-color:rgba(234,231,240,.8)!important;
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  }
+  .jawara-main { position:relative; z-index:1; max-width:1500px; margin:0 auto; }
+  .jawara-main > h1 { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.45rem!important; letter-spacing:-.035em; }
+
+  /* Upgrade generic app cards/forms without touching behavior */
+  .jawara-shell main .bg-white { border-color:var(--jw-line)!important; }
+  .jawara-shell main .rounded-2xl { border-radius:20px!important; }
+  .jawara-shell main .shadow-sm { box-shadow:0 8px 28px rgba(39,28,72,.055)!important; }
+  .jawara-shell main input,.jawara-shell main select,.jawara-shell main textarea { border-radius:11px!important; }
+  .jawara-shell main button { transition:transform .16s ease,background-color .16s ease,border-color .16s ease,box-shadow .16s ease; }
+  .jawara-shell main button:active { transform:scale(.985); }
+  .jawara-shell .text-violet-600,.jawara-shell .text-violet-500{color:var(--jw-purple)!important}
+  .jawara-shell .bg-violet-600{background:var(--jw-purple)!important}.jawara-shell .bg-violet-50{background:var(--jw-purple-100)!important}.jawara-shell .bg-violet-100{background:#E7E0FF!important}
+
+  .jw-app-lineart{position:fixed;right:18px;bottom:24px;width:120px;height:90px;z-index:0;opacity:.13;color:var(--jw-purple);pointer-events:none}
+  .jw-app-lineart svg{width:100%;height:100%}.jw-app-lineart path{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-dasharray:140;animation:jwDash 10s linear infinite}
+  @keyframes jwDash{to{stroke-dashoffset:-280}}
+
+  @media (prefers-reduced-motion: reduce) {
+    .jw-lineart .draw,.jw-lineart .float,.jw-app-lineart path{animation:none!important;stroke-dashoffset:0!important}
+  }
+  @media (max-width:1024px) {
+    .jw-title{font-size:3.2rem!important}.jw-visual{min-height:420px}.jw-pos-card{right:-5%;width:86%}.jw-mini-receipt{left:0}
+  }
+  @media (max-width:640px) {
+    .jw-title{font-size:2.75rem!important}.jw-visual{min-height:385px}.jw-pos-card{width:95%;right:-14%;top:20px}.jw-mini-receipt{width:165px;bottom:0}.jw-metric-grid{grid-template-columns:1fr 1fr}.jw-metric-grid .jw-metric:last-child{display:none}.jw-art-a{right:-40px}.jw-art-b{left:2%}
+  }
+
+
+  /* =========================================================
+     v3 — Scroll + compact header + responsive safety
+     ========================================================= */
+  html {
+    width:100%;
+    min-height:100%;
+    overflow-x:hidden;
+    overflow-y:auto !important;
+    scroll-padding-top:68px;
+  }
+  body {
+    width:100%;
+    min-height:100%;
+    height:auto !important;
+    overflow-x:hidden !important;
+    overflow-y:auto !important;
+    overscroll-behavior-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  #root {
+    width:100%;
+    min-height:100vh;
+    height:auto !important;
+    overflow:visible !important;
+  }
+
+  .jawara-landing {
+    width:100%;
+    min-height:100vh;
+    height:auto !important;
+    overflow:visible !important;
+  }
+
+  .jawara-landing .jw-header {
+    min-height:58px;
+  }
+
+  .jawara-landing .jw-header .jawara-brand-mark {
+    width:32px;
+    height:32px;
+    flex-basis:32px;
+    border-width:2.5px;
+    border-right-width:7px;
+  }
+  .jawara-landing .jw-header .jawara-brand-word {
+    font-size:1.02rem;
+  }
+
+  .jw-hero {
+    min-height:auto !important;
+    height:auto !important;
+  }
+
+  /* Avoid hero artwork extending the page width on phones. */
+  .jw-visual,
+  .jw-pos-card,
+  .jw-mini-receipt {
+    max-width:100%;
+  }
+
+  /* Dashboard should use normal document scrolling. */
+  .jawara-shell {
+    min-height:100vh;
+    height:auto !important;
+    overflow:visible !important;
+    align-items:stretch;
+  }
+  .jawara-shell > .flex-1 {
+    min-width:0;
+    width:100%;
+  }
+  .jawara-sidebar {
+    height:100dvh;
+    max-height:100dvh;
+  }
+  .jawara-sidebar nav {
+    min-height:0;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+  }
+  .jawara-topbar {
+    min-height:58px !important;
+    height:58px !important;
+  }
+  .jawara-main {
+    width:100%;
+    min-width:0;
+    padding-bottom:48px !important;
+  }
+
+  /* Wide data remains usable on small screens instead of breaking layout. */
+  .jawara-shell main table {
+    width:100%;
+  }
+  @supports selector(:has(*)) {
+    .jawara-shell main .overflow-hidden:has(table) {
+      overflow-x:auto !important;
+      -webkit-overflow-scrolling:touch;
+    }
+    .jawara-shell main .overflow-hidden:has(table) table {
+      min-width:680px;
+    }
+  }
+
+  @media (min-width:1024px) {
+    .jawara-sidebar {
+      position:sticky !important;
+      top:0;
+      transform:none !important;
+      flex:0 0 256px;
+    }
+    .jawara-shell > .flex-1 {
+      width:calc(100% - 256px);
+    }
+  }
+
+  @media (max-width:1023px) {
+    .jawara-sidebar {
+      width:min(82vw, 280px) !important;
+    }
+    .jawara-main {
+      padding-left:16px !important;
+      padding-right:16px !important;
+    }
+  }
+
+  @media (max-width:767px) {
+    .jawara-landing .jw-header {
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+    .jw-kicker {
+      font-size:.62rem;
+      padding:.45rem .7rem;
+      max-width:100%;
+    }
+    .jw-title {
+      font-size:clamp(2.35rem, 11vw, 3.1rem) !important;
+      line-height:1.02 !important;
+    }
+    .jw-hero p {
+      font-size:.95rem !important;
+    }
+    .jw-visual {
+      min-height:340px !important;
+      margin-top:4px;
+    }
+    .jw-pos-card {
+      position:absolute;
+      width:94%;
+      right:-5%;
+      top:8px;
+      padding:12px;
+      border-radius:20px;
+    }
+    .jw-chart {
+      height:145px;
+      padding:11px;
+    }
+    .jw-chart svg {
+      height:92px;
+    }
+    .jw-mini-receipt {
+      width:145px !important;
+      left:0;
+      bottom:0;
+      padding:12px;
+      border-radius:17px;
+    }
+    .jw-art-a { width:105px; height:70px; right:-25px; }
+    .jw-art-b { width:95px; height:65px; }
+    .jw-art-c { width:75px; height:58px; }
+
+    .jawara-topbar .max-w-sm {
+      max-width:180px;
+    }
+    .jawara-main > h1 {
+      font-size:1.2rem !important;
+      margin-bottom:12px !important;
+    }
+  }
+
+  @media (max-width:480px) {
+    .jawara-landing .jw-header .jawara-brand-word {
+      font-size:.95rem;
+    }
+    .jawara-landing .jw-header .jawara-brand-mark {
+      width:29px;
+      height:29px;
+      flex-basis:29px;
+    }
+    .jw-visual {
+      min-height:310px !important;
+    }
+    .jw-pos-card {
+      width:98%;
+      right:-14%;
+    }
+    .jw-mini-receipt {
+      transform:rotate(-3deg) scale(.9);
+      transform-origin:left bottom;
+    }
+    .jw-metric-grid {
+      grid-template-columns:1fr 1fr !important;
+    }
+    .jw-metric-grid .jw-metric:last-child {
+      display:none;
+    }
+
+    .jawara-topbar {
+      padding-left:10px !important;
+      padding-right:10px !important;
+    }
+    .jawara-topbar .max-w-sm {
+      display:none;
+    }
+    .jawara-main {
+      padding:12px !important;
+      padding-bottom:44px !important;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -731,7 +1114,7 @@ function todayStr() {
   return new Date(d.getTime() - tzOffsetMs).toISOString().slice(0, 10);
 }
 function Logo({ logoUrl }) {
-  return /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, logoUrl ? /* @__PURE__ */ React.createElement("img", { src: logoUrl, alt: "Logo toko", className: "w-9 h-9 rounded-xl object-cover shadow-sm border border-slate-100" }) : /* @__PURE__ */ React.createElement("div", { className: "w-9 h-9 rounded-xl bg-gradient-to-br from-stone-900 to-[#D5451B] flex items-center justify-center shadow-sm relative overflow-hidden" }, /* @__PURE__ */ React.createElement(Boxes, { className: "w-5 h-5 text-white", strokeWidth: 2.2 }), /* @__PURE__ */ React.createElement("span", { className: "absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#F0A202]" })), /* @__PURE__ */ React.createElement("span", { className: "font-display text-xl tracking-tight text-stone-900 leading-none pt-0.5" }, "JA", /* @__PURE__ */ React.createElement("span", { className: "text-[#D5451B]" }, "WARA")));
+  return /* @__PURE__ */ React.createElement("div", { className: "jawara-brand" }, logoUrl ? /* @__PURE__ */ React.createElement("img", { src: logoUrl, alt: "Logo toko", className: "w-9 h-9 rounded-xl object-cover shadow-sm border border-slate-100" }) : /* @__PURE__ */ React.createElement("span", { className: "jawara-brand-mark", "aria-hidden": "true" }), /* @__PURE__ */ React.createElement("span", { className: "jawara-brand-word" }, "Jawa", /* @__PURE__ */ React.createElement("b", null, "ra")));
 }
 function Toast({ message }) {
   if (!message) return null;
@@ -962,27 +1345,78 @@ Terima kasih.`
   };
   return /* @__PURE__ */ React.createElement("div", { className: "min-h-screen bg-ink flex items-center justify-center p-5 relative overflow-hidden" }, /* @__PURE__ */ React.createElement("div", { className: "absolute -top-24 -left-24 w-72 h-72 rounded-full bg-[#D5451B]/20 blur-3xl" }), /* @__PURE__ */ React.createElement("div", { className: "absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-[#F0A202]/15 blur-3xl" }), /* @__PURE__ */ React.createElement("div", { className: "w-full max-w-md bg-nota-paper rounded-3xl shadow-2xl p-8 relative border border-white/10" }, step !== 3 && /* @__PURE__ */ React.createElement("button", { onClick: step === 2 ? () => setStep(1) : onBack, className: "inline-flex items-center gap-1.5 font-mono-nota text-xs font-semibold text-stone-600 hover:text-stone-900 hover:bg-stone-900/5 border border-stone-900/15 rounded-full px-3 py-1.5 mb-6 transition-colors" }, /* @__PURE__ */ React.createElement(ArrowLeft, { className: "w-3.5 h-3.5" }), " ", step === 2 ? "Kembali ke Data Toko" : "Kembali ke Beranda"), /* @__PURE__ */ React.createElement("div", { className: "mb-6" }, /* @__PURE__ */ React.createElement(Logo, { logoUrl: settings.logoUrl })), step === 1 && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("h1", { className: "font-display text-2xl uppercase text-stone-900 mb-1" }, "Daftar & Berlangganan"), /* @__PURE__ */ React.createElement("p", { className: "text-sm text-stone-500 mb-5" }, "Buat akun toko Anda sendiri \u2014 login sungguhan setelah berlangganan aktif."), /* @__PURE__ */ React.createElement("form", { onSubmit: goToPayment, className: "flex flex-col gap-3" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("label", { className: "text-xs font-medium text-stone-600 mb-1 block" }, "Nama Toko ", /* @__PURE__ */ React.createElement("span", { className: "text-[#D5451B]" }, "*")), /* @__PURE__ */ React.createElement("input", { value: form.storeName, onChange: (e) => setForm({ ...form, storeName: e.target.value }), placeholder: "Toko Anda", className: "w-full border border-stone-900/15 bg-white rounded-xl px-3 py-2.5 text-sm outline-none focus:border-[#D5451B]" })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("label", { className: "text-xs font-medium text-stone-600 mb-1 block" }, "Nama Pemilik ", /* @__PURE__ */ React.createElement("span", { className: "text-[#D5451B]" }, "*")), /* @__PURE__ */ React.createElement("input", { value: form.owner, onChange: (e) => setForm({ ...form, owner: e.target.value }), placeholder: "Nama Anda", className: "w-full border border-stone-900/15 bg-white rounded-xl px-3 py-2.5 text-sm outline-none focus:border-[#D5451B]" })), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("label", { className: "text-xs font-medium text-stone-600 mb-1 block" }, "Email ", /* @__PURE__ */ React.createElement("span", { className: "text-[#D5451B]" }, "*")), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 border border-stone-900/15 bg-white rounded-xl px-3 py-2.5 focus-within:border-[#D5451B]" }, /* @__PURE__ */ React.createElement(Mail, { className: "w-4 h-4 text-stone-400" }), /* @__PURE__ */ React.createElement("input", { value: form.email, onChange: (e) => setForm({ ...form, email: e.target.value }), type: "email", placeholder: "nama@toko.id", className: "flex-1 text-sm outline-none" }))), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-2 gap-2" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("label", { className: "text-xs font-medium text-stone-600 mb-1 block" }, "Kata Sandi ", /* @__PURE__ */ React.createElement("span", { className: "text-[#D5451B]" }, "*")), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 border border-stone-900/15 bg-white rounded-xl px-3 py-2.5 focus-within:border-[#D5451B]" }, /* @__PURE__ */ React.createElement(Lock, { className: "w-4 h-4 text-stone-400 shrink-0" }), /* @__PURE__ */ React.createElement("input", { value: form.password, onChange: (e) => setForm({ ...form, password: e.target.value }), type: "password", placeholder: "Min. 6 karakter", className: "flex-1 min-w-0 text-sm outline-none" }))), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("label", { className: "text-xs font-medium text-stone-600 mb-1 block" }, "Ulangi Sandi ", /* @__PURE__ */ React.createElement("span", { className: "text-[#D5451B]" }, "*")), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 border border-stone-900/15 bg-white rounded-xl px-3 py-2.5 focus-within:border-[#D5451B]" }, /* @__PURE__ */ React.createElement(KeyRound, { className: "w-4 h-4 text-stone-400 shrink-0" }), /* @__PURE__ */ React.createElement("input", { value: form.confirmPassword, onChange: (e) => setForm({ ...form, confirmPassword: e.target.value }), type: "password", placeholder: "Ulangi", className: "flex-1 min-w-0 text-sm outline-none" })))), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("label", { className: "text-xs font-medium text-stone-600 mb-1.5 block" }, "Pilih Paket"), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-3 gap-2" }, SUBSCRIPTION_PLANS.map((p) => /* @__PURE__ */ React.createElement("button", { type: "button", key: p.key, onClick: () => setForm({ ...form, plan: p.key }), className: `flex flex-col items-center gap-1 rounded-xl border px-2 py-3 text-center transition-colors ${form.plan === p.key ? "border-[#D5451B] bg-[#D5451B]/10" : "border-stone-900/10 bg-white hover:border-stone-900/25"}` }, /* @__PURE__ */ React.createElement("span", { className: "font-mono-nota text-[11px] font-semibold text-stone-800" }, p.key), /* @__PURE__ */ React.createElement("span", { className: "text-[10px] text-stone-500" }, rupiah(p.price), "/bln"))))), error && /* @__PURE__ */ React.createElement("p", { className: "flex items-start gap-1.5 text-xs text-rose-600 bg-rose-50 border border-rose-100 rounded-lg px-3 py-2" }, /* @__PURE__ */ React.createElement(ShieldAlert, { className: "w-3.5 h-3.5 shrink-0 mt-0.5" }), " ", error), /* @__PURE__ */ React.createElement("button", { type: "submit", className: "mt-2 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-stone-900 text-white font-semibold text-sm hover:bg-stone-800" }, "Lanjut ke Pembayaran ", /* @__PURE__ */ React.createElement(ArrowRight, { className: "w-4 h-4" })))), step === 2 && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("h1", { className: "font-display text-2xl uppercase text-stone-900 mb-1" }, "Pembayaran"), /* @__PURE__ */ React.createElement("p", { className: "text-sm text-stone-500 mb-5" }, "Paket ", /* @__PURE__ */ React.createElement("strong", null, selectedPlan.key), " \u2014 aktif 30 hari sejak pembayaran diverifikasi."), /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between bg-white border border-stone-900/10 rounded-xl px-4 py-3 mb-5" }, /* @__PURE__ */ React.createElement("span", { className: "text-sm text-stone-600" }, "Total Tagihan"), /* @__PURE__ */ React.createElement("span", { className: "font-display text-xl text-[#D5451B]" }, rupiah(selectedPlan.price))), /* @__PURE__ */ React.createElement("label", { className: "text-xs font-medium text-stone-600 mb-1.5 block" }, "Metode Pembayaran"), /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-2 gap-2 mb-4" }, PAYMENT_METHODS.filter((m) => m.key !== "tunai").map((m) => /* @__PURE__ */ React.createElement("button", { type: "button", key: m.key, onClick: () => setPaymentMethod(m.key), className: `flex items-center gap-2 rounded-xl border px-3 py-2.5 text-left transition-colors ${paymentMethod === m.key ? "border-[#D5451B] bg-[#D5451B]/10" : "border-stone-900/10 bg-white hover:border-stone-900/25"}` }, /* @__PURE__ */ React.createElement(m.icon, { className: "w-4 h-4 text-stone-600 shrink-0" }), /* @__PURE__ */ React.createElement("span", { className: "text-xs font-semibold text-stone-800" }, m.label)))), paymentMethod === "qris" ? /* @__PURE__ */ React.createElement("div", { className: "bg-white border border-stone-900/10 rounded-xl p-4 mb-4 text-center" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white border-2 border-stone-900 rounded-xl p-2.5 mx-auto w-fit mb-3" }, /* @__PURE__ */ React.createElement(QrPattern, { seed: (form.storeName || "toko") + selectedPlan.price })), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-stone-500" }, "Scan QRIS ini dari e-wallet atau m-banking apa saja (GoPay, OVO, DANA, ShopeePay, BCA, dll) sejumlah ", /* @__PURE__ */ React.createElement("strong", { className: "text-stone-800" }, rupiah(selectedPlan.price)), ".")) : /* @__PURE__ */ React.createElement("div", { className: "bg-white border border-stone-900/10 rounded-xl p-4 mb-4" }, /* @__PURE__ */ React.createElement("p", { className: "text-xs text-stone-500 mb-2" }, "Transfer sejumlah ", /* @__PURE__ */ React.createElement("strong", { className: "text-stone-800" }, rupiah(selectedPlan.price)), " ke rekening berikut:"), /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between bg-stone-50 border border-stone-900/10 rounded-lg px-3 py-2.5" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className: "font-mono-nota text-sm font-bold text-stone-900" }, OWNER_BANK_ACCOUNT.bank, " ", OWNER_BANK_ACCOUNT.number), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-stone-500" }, "a.n. ", OWNER_BANK_ACCOUNT.holder)), /* @__PURE__ */ React.createElement("button", { type: "button", onClick: () => copyText(OWNER_BANK_ACCOUNT.number, "rek"), className: "shrink-0 text-[11px] font-semibold text-[#D5451B] hover:underline" }, copiedField === "rek" ? "Tersalin!" : "Salin"))), /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between gap-2 bg-[#F0A202]/10 border border-[#F0A202]/30 rounded-xl px-3 py-2.5 mb-5" }, /* @__PURE__ */ React.createElement("span", { className: "font-mono-nota text-[11px] text-stone-600 leading-snug" }, "Kirim bukti transfer ke:", /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("strong", { className: "text-stone-900" }, OWNER_EMAIL)), /* @__PURE__ */ React.createElement("button", { type: "button", onClick: () => copyText(OWNER_EMAIL, "email"), className: "shrink-0 text-[11px] font-semibold text-[#8a5c02] hover:underline" }, copiedField === "email" ? "Tersalin!" : "Salin")), error && /* @__PURE__ */ React.createElement("p", { className: "flex items-start gap-1.5 text-xs text-rose-600 bg-rose-50 border border-rose-100 rounded-lg px-3 py-2 mb-3" }, /* @__PURE__ */ React.createElement(ShieldAlert, { className: "w-3.5 h-3.5 shrink-0 mt-0.5" }), " ", error), /* @__PURE__ */ React.createElement("a", { href: mailtoHref, onClick: finalizeRegistration, className: "w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-stone-900 text-white font-semibold text-sm hover:bg-stone-800" }, /* @__PURE__ */ React.createElement(Mail, { className: "w-4 h-4" }), " Sudah Transfer \u2014 Kirim Bukti via Email"), /* @__PURE__ */ React.createElement("p", { className: "text-center font-mono-nota text-[10px] text-stone-400 mt-4" }, "Akun toko dibuat setelah bukti dikirim, lalu diaktifkan Pengelola Sistem maks. 1x24 jam setelah dicek.")), step === 3 && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4" }, /* @__PURE__ */ React.createElement(CheckCircle2, { className: "w-6 h-6" })), /* @__PURE__ */ React.createElement("h1", { className: "font-display text-2xl uppercase text-stone-900 mb-1" }, "Menunggu Verifikasi"), /* @__PURE__ */ React.createElement("p", { className: "text-sm text-stone-500 mb-5 leading-relaxed" }, "Akun toko ", /* @__PURE__ */ React.createElement("strong", { className: "text-stone-800" }, form.storeName), " sudah dibuat. Setelah bukti transfer Anda diterima & dicek di ", /* @__PURE__ */ React.createElement("strong", { className: "text-stone-800" }, OWNER_EMAIL), ", akun akan diaktifkan Pengelola Sistem (maks. 1x24 jam) dan Anda bisa masuk."), /* @__PURE__ */ React.createElement("div", { className: "bg-white border border-stone-900/10 rounded-xl p-4 mb-6 flex flex-col gap-2 font-mono-nota text-xs" }, /* @__PURE__ */ React.createElement("p", { className: "text-stone-400" }, "LOGIN ADMIN"), /* @__PURE__ */ React.createElement("p", { className: "text-stone-800 font-semibold" }, form.email.trim().toLowerCase()), /* @__PURE__ */ React.createElement("p", { className: "text-stone-400 mt-1.5" }, "LOGIN KASIR"), /* @__PURE__ */ React.createElement("p", { className: "text-stone-800 font-semibold" }, kasirEmail)), /* @__PURE__ */ React.createElement("button", { onClick: () => onRegistered(form.email.trim().toLowerCase()), className: "w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-stone-900 text-white font-semibold text-sm hover:bg-stone-800" }, /* @__PURE__ */ React.createElement(LogIn, { className: "w-4 h-4" }), " Ke Halaman Masuk"))));
 }
+
+function LineArt({ className = "", kind = "spark" }) {
+  if (kind === "wave") return /* @__PURE__ */ React.createElement("span", { className: `jw-lineart ${className}`, "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 160 100" }, /* @__PURE__ */ React.createElement("path", { className: "draw", d: "M8 66 C30 30, 54 86, 78 46 S124 24, 151 58" }), /* @__PURE__ */ React.createElement("path", { className: "draw", d: "M24 82 C48 55, 65 94, 98 67", style: { animationDelay: ".8s" } })));
+  if (kind === "receipt") return /* @__PURE__ */ React.createElement("span", { className: `jw-lineart ${className}`, "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 120 90" }, /* @__PURE__ */ React.createElement("path", { className: "draw float", d: "M28 9h58v66l-8-6-8 6-8-6-8 6-8-6-8 6-10-7V9Z" }), /* @__PURE__ */ React.createElement("path", { className: "draw", d: "M41 28h32M41 40h25M41 52h32" })));
+  return /* @__PURE__ */ React.createElement("span", { className: `jw-lineart ${className}`, "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 130 95" }, /* @__PURE__ */ React.createElement("path", { className: "draw", d: "M14 64c20-7 14-31 37-31 21 0 21 27 43 26 12-1 18-7 25-17" }), /* @__PURE__ */ React.createElement("polyline", { className: "draw float", points: "91,14 96,25 108,28 99,36 101,48 91,42 80,48 83,36 74,28 86,25 91,14" })));
+}
+
 function LandingPage({ onLogin, onRegister, onViewMenu, onAdminLogin, settings }) {
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     const els = document.querySelectorAll(".reveal");
-    if (els.length === 0) return;
-    if (!("IntersectionObserver" in window)) {
-      els.forEach((el) => el.classList.add("is-visible"));
-      return;
-    }
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -30px 0px" });
+    if (!els.length) return;
+    if (!("IntersectionObserver" in window)) { els.forEach((el) => el.classList.add("is-visible")); return; }
+    const obs = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) { entry.target.classList.add("is-visible"); obs.unobserve(entry.target); }
+    }), { threshold: 0.1, rootMargin: "0px 0px -20px 0px" });
     els.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
   }, []);
-  return /* @__PURE__ */ React.createElement("div", { className: "min-h-screen bg-nota-paper text-stone-900" }, /* @__PURE__ */ React.createElement("header", { className: "sticky top-0 z-30 bg-nota-paper/90 backdrop-blur border-b border-stone-900/10" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between" }, /* @__PURE__ */ React.createElement(Logo, { logoUrl: settings.logoUrl }), /* @__PURE__ */ React.createElement("nav", { className: "hidden md:flex items-center gap-8 text-sm font-semibold text-stone-600" }, /* @__PURE__ */ React.createElement("a", { className: "text-[#D5451B]", href: "#beranda" }, "Beranda"), /* @__PURE__ */ React.createElement("a", { className: "hover:text-stone-900", href: "#fitur" }, "Fitur"), /* @__PURE__ */ React.createElement("a", { className: "hover:text-stone-900", href: "#keunggulan" }, "Keunggulan"), /* @__PURE__ */ React.createElement("a", { className: "hover:text-stone-900", href: "#kontak" }, "Kontak")), /* @__PURE__ */ React.createElement("div", { className: "hidden sm:flex items-center gap-2" }, /* @__PURE__ */ React.createElement("button", { onClick: onViewMenu, className: "px-4 py-2 text-sm font-semibold text-stone-700 hover:bg-stone-900/5 rounded-lg border border-stone-900/15" }, "Lihat Menu"), /* @__PURE__ */ React.createElement("button", { onClick: onLogin, className: "px-4 py-2 text-sm font-semibold text-stone-700 hover:bg-stone-900/5 rounded-lg border border-stone-900/15" }, "Masuk"), /* @__PURE__ */ React.createElement("button", { onClick: onRegister, className: "px-4 py-2 text-sm font-bold text-stone-900 bg-[#F0A202] hover:bg-[#d99202] rounded-lg shadow-sm" }, "Coba Gratis")), /* @__PURE__ */ React.createElement("button", { className: "sm:hidden", onClick: () => setMenuOpen((v) => !v) }, menuOpen ? /* @__PURE__ */ React.createElement(X, { className: "w-6 h-6" }) : /* @__PURE__ */ React.createElement(Menu, { className: "w-6 h-6" }))), menuOpen && /* @__PURE__ */ React.createElement("div", { className: "sm:hidden px-5 pb-4 flex flex-col gap-3 text-sm font-semibold text-stone-600" }, /* @__PURE__ */ React.createElement("a", { href: "#fitur" }, "Fitur"), /* @__PURE__ */ React.createElement("a", { href: "#keunggulan" }, "Keunggulan"), /* @__PURE__ */ React.createElement("a", { href: "#kontak" }, "Kontak"), /* @__PURE__ */ React.createElement("button", { onClick: onViewMenu, className: "mt-1 px-4 py-2 text-sm font-semibold text-stone-700 border border-stone-900/15 rounded-lg text-left" }, "Lihat Menu"), /* @__PURE__ */ React.createElement("button", { onClick: onRegister, className: "px-4 py-2 text-sm font-bold text-stone-900 bg-[#F0A202] rounded-lg" }, "Coba Gratis"))), /* @__PURE__ */ React.createElement("section", { id: "beranda", className: "max-w-7xl mx-auto px-5 sm:px-8 pt-16 pb-24 grid lg:grid-cols-2 gap-14 items-center" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", { className: "inline-flex items-center gap-2 font-mono-nota text-xs font-medium text-[#D5451B] bg-[#D5451B]/10 border border-[#D5451B]/20 rounded-full px-3 py-1.5 mb-6" }, /* @__PURE__ */ React.createElement("span", { className: "w-1.5 h-1.5 rounded-full bg-[#D5451B]" }), "UNTUK TOKO & WARUNG INDONESIA"), /* @__PURE__ */ React.createElement("h1", { className: "font-display text-5xl sm:text-6xl leading-[0.95] tracking-tight text-stone-900 uppercase" }, "Jadi ", /* @__PURE__ */ React.createElement("span", { className: "text-[#D5451B]" }, "Jawara"), " di Toko Sendiri"), /* @__PURE__ */ React.createElement("p", { className: "mt-6 text-stone-600 text-base sm:text-lg max-w-lg leading-relaxed" }, "Satu aplikasi untuk kasir, stok, barcode, dan laporan \u2014 jalan langsung di browser, tanpa instal, tanpa ribet."), /* @__PURE__ */ React.createElement("div", { className: "mt-8 flex flex-wrap items-center gap-3" }, /* @__PURE__ */ React.createElement("button", { onClick: onRegister, className: "inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-stone-900 text-white font-semibold text-sm hover:bg-stone-800 shadow-lg shadow-stone-900/10" }, "Coba Gratis Sekarang ", /* @__PURE__ */ React.createElement(ArrowRight, { className: "w-4 h-4" })), /* @__PURE__ */ React.createElement("button", { onClick: onLogin, className: "inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-stone-900/15 text-stone-700 font-semibold text-sm hover:bg-stone-900/5" }, /* @__PURE__ */ React.createElement(Play, { className: "w-4 h-4" }), " Lihat Demo")), /* @__PURE__ */ React.createElement("div", { className: "mt-8 flex flex-wrap gap-2.5" }, [{ icon: Sparkles, text: "Mudah Digunakan" }, { icon: ShieldCheck, text: "Data Tersimpan Aman" }, { icon: FileText, text: "Laporan Lengkap" }, { icon: Boxes, text: "Grafis AR/VR" }, { icon: Headphones, text: "Support 24/7" }].map((b) => /* @__PURE__ */ React.createElement("span", { key: b.text, className: "inline-flex items-center gap-1.5 font-mono-nota text-[11px] font-medium text-stone-600 bg-white border border-stone-900/10 rounded-full px-3 py-1.5" }, /* @__PURE__ */ React.createElement(b.icon, { className: "w-3.5 h-3.5 text-[#D5451B]" }), " ", b.text)))), /* @__PURE__ */ React.createElement(ReceiptMock, null)), /* @__PURE__ */ React.createElement("section", { id: "fitur", className: "bg-ink py-20" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-7xl mx-auto px-5 sm:px-8" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-xl mb-12" }, /* @__PURE__ */ React.createElement("p", { className: "font-mono-nota text-xs text-[#F0A202] mb-3" }, "// DAFTAR FITUR"), /* @__PURE__ */ React.createElement("h2", { className: "font-display text-3xl sm:text-4xl text-white uppercase leading-tight" }, "Semua yang Toko Anda Butuhkan")), /* @__PURE__ */ React.createElement("div", { className: "grid sm:grid-cols-2 lg:grid-cols-3 gap-4" }, features.map((f, i) => /* @__PURE__ */ React.createElement("button", { key: f.title, onClick: onLogin, className: "reveal text-left bg-white/[0.04] border border-white/10 rounded-2xl p-6 hover:bg-white/[0.07] hover:border-white/20 transition-all", style: { transitionDelay: `${(i % 6) * 70}ms` } }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between mb-4" }, /* @__PURE__ */ React.createElement("div", { className: "w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center" }, /* @__PURE__ */ React.createElement(f.icon, { className: "w-5 h-5 text-[#F0A202]" })), /* @__PURE__ */ React.createElement("span", { className: "font-mono-nota text-[11px] text-white/30" }, "#", String(i + 1).padStart(3, "0"))), /* @__PURE__ */ React.createElement("h3", { className: "font-bold text-white mb-1.5" }, f.title), /* @__PURE__ */ React.createElement("p", { className: "text-sm text-white/50 mb-3 leading-relaxed" }, f.desc), /* @__PURE__ */ React.createElement("ul", { className: "flex flex-col gap-1.5" }, f.points.map((pt) => /* @__PURE__ */ React.createElement("li", { key: pt, className: "flex items-start gap-1.5 text-xs text-white/40" }, /* @__PURE__ */ React.createElement(CheckCircle2, { className: "w-3.5 h-3.5 text-[#D5451B] shrink-0 mt-0.5" }), /* @__PURE__ */ React.createElement("span", null, pt))))))))), /* @__PURE__ */ React.createElement("section", { id: "keunggulan", className: "bg-nota-paper py-20" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-5xl mx-auto px-5 sm:px-8" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-xl mb-10" }, /* @__PURE__ */ React.createElement("p", { className: "font-mono-nota text-xs text-[#D5451B] mb-3" }, "// KENAPA JAWARA"), /* @__PURE__ */ React.createElement("h2", { className: "font-display text-3xl sm:text-4xl text-stone-900 uppercase leading-tight" }, "Beda JAWARA dengan Kasir Lain"), /* @__PURE__ */ React.createElement("p", { className: "mt-3 text-stone-600 text-sm sm:text-base leading-relaxed" }, "Dibanding aplikasi kasir pada umumnya di pasaran, ini yang membuat toko Anda lebih diuntungkan pakai JAWARA.")), /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-2xl border border-stone-900/10 shadow-sm overflow-hidden" }, /* @__PURE__ */ React.createElement("div", { className: "grid grid-cols-[1.1fr_1fr_1fr] font-mono-nota text-[11px] sm:text-xs font-semibold uppercase tracking-wide bg-stone-900 text-white" }, /* @__PURE__ */ React.createElement("div", { className: "px-4 sm:px-5 py-3" }, "Aspek"), /* @__PURE__ */ React.createElement("div", { className: "px-4 sm:px-5 py-3 text-[#F0A202]" }, "JAWARA"), /* @__PURE__ */ React.createElement("div", { className: "px-4 sm:px-5 py-3 text-white/50" }, "Kasir Lain (Umum)")), comparisonRows.map((row, i) => /* @__PURE__ */ React.createElement("div", { key: row.label, className: `reveal grid grid-cols-[1.1fr_1fr_1fr] ${i !== comparisonRows.length - 1 ? "dotted-divider" : ""}`, style: { transitionDelay: `${i * 60}ms` } }, /* @__PURE__ */ React.createElement("div", { className: "px-4 sm:px-5 py-4 text-sm font-semibold text-stone-800 flex items-center" }, row.label), /* @__PURE__ */ React.createElement("div", { className: "px-4 sm:px-5 py-4 flex items-start gap-1.5 bg-[#D5451B]/[0.04]" }, /* @__PURE__ */ React.createElement(CheckCircle2, { className: "w-4 h-4 text-[#D5451B] shrink-0 mt-0.5" }), /* @__PURE__ */ React.createElement("span", { className: "text-xs sm:text-sm text-stone-700 leading-snug" }, row.jawara)), /* @__PURE__ */ React.createElement("div", { className: "px-4 sm:px-5 py-4 flex items-start gap-1.5" }, /* @__PURE__ */ React.createElement(X, { className: "w-4 h-4 text-stone-300 shrink-0 mt-0.5" }), /* @__PURE__ */ React.createElement("span", { className: "text-xs sm:text-sm text-stone-400 leading-snug" }, row.other))))), /* @__PURE__ */ React.createElement("p", { className: "font-mono-nota text-[11px] text-stone-400 mt-4" }, "* Perbandingan bersifat umum terhadap pola aplikasi kasir konvensional di pasaran, bukan merujuk pada produk tertentu."))), /* @__PURE__ */ React.createElement("section", { id: "kontak", className: "bg-nota-paper py-20" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-7xl mx-auto px-5 sm:px-8" }, /* @__PURE__ */ React.createElement("div", { className: "grid lg:grid-cols-2 gap-10 items-center" }, /* @__PURE__ */ React.createElement("div", { className: "bg-white rounded-2xl border border-stone-900/10 p-6 shadow-sm" }, /* @__PURE__ */ React.createElement("p", { className: "font-mono-nota text-xs text-stone-400 mb-3 dotted-divider pb-3" }, "RINGKASAN \u2014 JAWARA"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col divide-y divide-dashed divide-stone-900/10" }, [{ label: "Pengguna Aktif", value: "Jadilah yang Pertama!" }, { label: "Transaksi Sukses", value: "100+" }, { label: "Kepuasan Pengguna", value: "99%" }, { label: "Support Aktif", value: "24/7" }].map((s, i) => /* @__PURE__ */ React.createElement("div", { key: s.label, className: "reveal flex items-center justify-between py-3 font-mono-nota text-sm", style: { transitionDelay: `${i * 70}ms` } }, /* @__PURE__ */ React.createElement("span", { className: "text-stone-500" }, s.label), /* @__PURE__ */ React.createElement("span", { className: "text-stone-900 font-semibold" }, s.value))))), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h3", { className: "font-display text-3xl uppercase text-stone-900 mb-3 leading-tight" }, "Siap Jadi Jawara?"), /* @__PURE__ */ React.createElement("p", { className: "text-stone-600 text-sm sm:text-base mb-6 max-w-md leading-relaxed" }, "Bergabunglah dengan ribuan pemilik toko yang sudah mengelola bisnisnya lebih rapi bareng JAWARA."), /* @__PURE__ */ React.createElement("button", { onClick: onRegister, className: "inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#D5451B] text-white font-semibold text-sm hover:bg-[#b83a16] shadow-lg shadow-[#D5451B]/20" }, "Coba Gratis Sekarang ", /* @__PURE__ */ React.createElement(ArrowRight, { className: "w-4 h-4" })))))), /* @__PURE__ */ React.createElement("footer", { className: "bg-ink py-8" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "font-display text-lg tracking-tight text-white" }, "JA", /* @__PURE__ */ React.createElement("span", { className: "text-[#F0A202]" }, "WARA")), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col sm:flex-row items-center gap-3" }, /* @__PURE__ */ React.createElement("button", { onClick: onAdminLogin, className: "inline-flex items-center gap-1.5 font-mono-nota text-[11px] text-white/50 hover:text-white transition-colors" }, /* @__PURE__ */ React.createElement(Crown, { className: "w-3.5 h-3.5" }), " Masuk sebagai Pengelola Sistem"), /* @__PURE__ */ React.createElement(CopyrightFooter, { className: "text-center text-xs text-white/40" })))));
+  const metric = (label, value, trend, alert) => /* @__PURE__ */ React.createElement("div", { className: `jw-metric ${alert ? "alert" : ""}` }, /* @__PURE__ */ React.createElement("span", null, label), /* @__PURE__ */ React.createElement("strong", null, value), /* @__PURE__ */ React.createElement("em", null, trend));
+  return /* @__PURE__ */ React.createElement("div", { className: "min-h-screen jawara-landing" },
+    /* @__PURE__ */ React.createElement("header", { className: "jw-header sticky top-0 z-30 border-b" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[58px] sm:h-[62px] flex items-center justify-between" },
+      /* @__PURE__ */ React.createElement(Logo, { logoUrl: settings.logoUrl }),
+      /* @__PURE__ */ React.createElement("nav", { className: "hidden md:flex items-center gap-8 text-sm font-semibold text-stone-600" },
+        /* @__PURE__ */ React.createElement("a", { className: "text-violet-600", href: "#beranda" }, "Beranda"),
+        /* @__PURE__ */ React.createElement("a", { className: "hover:text-violet-600", href: "#fitur" }, "Fitur"),
+        /* @__PURE__ */ React.createElement("a", { className: "hover:text-violet-600", href: "#keunggulan" }, "Keunggulan"),
+        /* @__PURE__ */ React.createElement("a", { className: "hover:text-violet-600", href: "#kontak" }, "Kontak")),
+      /* @__PURE__ */ React.createElement("div", { className: "hidden sm:flex items-center gap-2" },
+        /* @__PURE__ */ React.createElement("button", { onClick: onViewMenu, className: "jw-secondary px-4 py-2.5 text-sm font-semibold" }, "Lihat Menu"),
+        /* @__PURE__ */ React.createElement("button", { onClick: onLogin, className: "jw-secondary px-4 py-2.5 text-sm font-semibold" }, "Masuk"),
+        /* @__PURE__ */ React.createElement("button", { onClick: onRegister, className: "jw-primary px-4 py-2.5 text-sm font-bold" }, "Coba Gratis")),
+      /* @__PURE__ */ React.createElement("button", { className: "sm:hidden", onClick: () => setMenuOpen((v) => !v) }, menuOpen ? /* @__PURE__ */ React.createElement(X, { className: "w-6 h-6" }) : /* @__PURE__ */ React.createElement(Menu, { className: "w-6 h-6" }))),
+    menuOpen && /* @__PURE__ */ React.createElement("div", { className: "sm:hidden fixed top-[62px] left-3 right-3 z-40 bg-white border border-slate-100 shadow-xl rounded-2xl p-4 flex flex-col gap-3 text-sm font-semibold" },
+      /* @__PURE__ */ React.createElement("a", { href: "#fitur", onClick: () => setMenuOpen(false) }, "Fitur"),
+      /* @__PURE__ */ React.createElement("a", { href: "#keunggulan", onClick: () => setMenuOpen(false) }, "Keunggulan"),
+      /* @__PURE__ */ React.createElement("a", { href: "#kontak", onClick: () => setMenuOpen(false) }, "Kontak"),
+      /* @__PURE__ */ React.createElement("button", { onClick: onViewMenu, className: "jw-secondary px-4 py-2.5 text-left" }, "Lihat Menu"),
+      /* @__PURE__ */ React.createElement("button", { onClick: onRegister, className: "jw-primary px-4 py-2.5 text-left" }, "Coba Gratis")),
+
+    /* @__PURE__ */ React.createElement("section", { id: "beranda", className: "jw-hero" }, /* @__PURE__ */ React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-12 lg:pt-14 pb-14 sm:pb-16 lg:pb-20 grid lg:grid-cols-[.92fr_1.08fr] gap-8 lg:gap-12 items-center" },
+      /* @__PURE__ */ React.createElement("div", { className: "relative z-10" },
+        /* @__PURE__ */ React.createElement("div", { className: "jw-kicker mb-5" }, /* @__PURE__ */ React.createElement(Sparkles, { className: "w-4 h-4" }), "POS & MANAJEMEN TOKO YANG NGGAK RIBET"),
+        /* @__PURE__ */ React.createElement("h1", { className: "jw-title text-5xl sm:text-6xl text-stone-900" }, "Bikin toko lebih ", /* @__PURE__ */ React.createElement("span", { className: "p" }, "rapi"), ", kerja lebih ", /* @__PURE__ */ React.createElement("span", { className: "y" }, "cepat"), ", keputusan lebih ", /* @__PURE__ */ React.createElement("span", { className: "r" }, "tepat.")),
+        /* @__PURE__ */ React.createElement("p", { className: "mt-6 text-slate-600 text-base sm:text-lg max-w-xl leading-relaxed" }, "Kasir, produk, stok, barcode, pelanggan, supplier, laporan, backup data, dan akses pengguna tetap lengkap — sekarang dengan pengalaman yang lebih modern dan ringan."),
+        /* @__PURE__ */ React.createElement("div", { className: "mt-8 flex flex-wrap gap-3" },
+          /* @__PURE__ */ React.createElement("button", { onClick: onRegister, className: "jw-primary inline-flex items-center gap-2 px-6 py-3.5 font-semibold text-sm" }, "Coba Gratis Sekarang ", /* @__PURE__ */ React.createElement(ArrowRight, { className: "w-4 h-4" })),
+          /* @__PURE__ */ React.createElement("button", { onClick: onLogin, className: "jw-secondary inline-flex items-center gap-2 px-6 py-3.5 font-semibold text-sm" }, /* @__PURE__ */ React.createElement(Play, { className: "w-4 h-4" }), " Lihat Demo")),
+        /* @__PURE__ */ React.createElement("div", { className: "mt-8 flex flex-wrap gap-2" }, [{icon:ScanLine,text:"Scan Barcode"},{icon:Boxes,text:"Stok Real-time"},{icon:FileSpreadsheet,text:"Excel"},{icon:FileDown,text:"PDF"},{icon:Download,text:"Backup Data"}].map((b) => /* @__PURE__ */ React.createElement("span", { key:b.text, className:"jw-chip inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold" }, /* @__PURE__ */ React.createElement(b.icon,{className:"w-3.5 h-3.5 text-violet-600"}), b.text)))),
+      /* @__PURE__ */ React.createElement("div", { className: "jw-visual" },
+        /* @__PURE__ */ React.createElement(LineArt, { className: "jw-art-a", kind: "spark" }),
+        /* @__PURE__ */ React.createElement(LineArt, { className: "jw-art-b yellow", kind: "wave" }),
+        /* @__PURE__ */ React.createElement(LineArt, { className: "jw-art-c red", kind: "receipt" }),
+        /* @__PURE__ */ React.createElement("div", { className: "jw-pos-card" },
+          /* @__PURE__ */ React.createElement("div", { className: "mock-nav" }, /* @__PURE__ */ React.createElement(Logo, { logoUrl: "" }), /* @__PURE__ */ React.createElement("div", { className: "mock-search" })),
+          /* @__PURE__ */ React.createElement("div", { className: "jw-metric-grid" }, metric("Penjualan Hari Ini", "Rp 12.560.000", "+12,5%"), metric("Transaksi", "128", "+8,3%"), metric("Stok Menipis", "8", "Perlu dicek", true)),
+          /* @__PURE__ */ React.createElement("div", { className: "jw-chart" }, /* @__PURE__ */ React.createElement("div", { className: "flex justify-between text-[10px] mb-2" }, /* @__PURE__ */ React.createElement("strong", null, "Grafik Penjualan"), /* @__PURE__ */ React.createElement("span", { className:"text-slate-400" }, "7 hari terakhir")), /* @__PURE__ */ React.createElement("svg", { viewBox:"0 0 420 120", preserveAspectRatio:"none" }, /* @__PURE__ */ React.createElement("polyline", { points:"0,103 55,78 110,86 170,45 225,62 280,30 340,44 420,12", fill:"none", stroke:"#5B34E6", strokeWidth:"4", strokeLinecap:"round" }), /* @__PURE__ */ React.createElement("polyline", { points:"0,112 55,101 110,90 170,98 225,78 280,84 340,70 420,58", fill:"none", stroke:"#FFC83D", strokeWidth:"3", strokeLinecap:"round" })))),
+        /* @__PURE__ */ React.createElement("div", { className: "jw-mini-receipt" }, /* @__PURE__ */ React.createElement("div", { className:"text-xs font-extrabold mb-2" }, "TRANSAKSI #00128"), ["Kopi Arabica","Gula Pasir 1kg","Susu UHT"].map((x,i)=>/* @__PURE__ */ React.createElement("div",{key:x,className:"receipt-row"},/* @__PURE__ */ React.createElement("span",null,x),/* @__PURE__ */ React.createElement("span",null,rupiah([25000,15000,18000][i])))), /* @__PURE__ */ React.createElement("div",{className:"receipt-total"},/* @__PURE__ */ React.createElement("span",null,"TOTAL"),/* @__PURE__ */ React.createElement("span",null,"Rp 58.000"))))))),
+
+    /* @__PURE__ */ React.createElement("section", { id:"fitur", className:"jw-feature-section py-20" }, /* @__PURE__ */ React.createElement("div", { className:"max-w-7xl mx-auto px-5 sm:px-8" },
+      /* @__PURE__ */ React.createElement("div", { className:"grid lg:grid-cols-[1fr_.7fr] gap-8 items-end mb-12" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className:"text-xs font-extrabold tracking-[.18em] text-violet-600 mb-3" }, "FITUR LENGKAP"), /* @__PURE__ */ React.createElement("h2", { className:"text-3xl sm:text-4xl font-extrabold tracking-tight" }, "Fungsinya tetap lengkap. ", /* @__PURE__ */ React.createElement("span",{className:"text-violet-600"},"Tampilannya yang naik kelas."))), /* @__PURE__ */ React.createElement("p", { className:"text-sm sm:text-base text-slate-500 leading-relaxed" }, "Tidak ada fitur yang dihapus. Semua modul existing tetap dipertahankan, termasuk impor/ekspor Excel, laporan PDF, backup JSON, role & permission, serta pembayaran.")),
+      /* @__PURE__ */ React.createElement("div", { className:"grid sm:grid-cols-2 lg:grid-cols-4 gap-4" }, features.map((f,i)=>/* @__PURE__ */ React.createElement("button", { key:f.title,onClick:onLogin,className:"reveal jw-feature-card text-left rounded-2xl p-5 transition-all",style:{transitionDelay:`${(i%8)*45}ms`} }, /* @__PURE__ */ React.createElement("div",{className:"flex justify-between items-start"},/* @__PURE__ */ React.createElement("div",{className:"jw-feature-icon w-11 h-11 rounded-xl flex items-center justify-center"},/* @__PURE__ */ React.createElement(f.icon,{className:"w-5 h-5"})),/* @__PURE__ */ React.createElement("span",{className:"feature-number text-[10px] font-mono-nota"},String(i+1).padStart(2,"0"))),/* @__PURE__ */ React.createElement("h3",{className:"font-bold mt-5 mb-1.5"},f.title),/* @__PURE__ */ React.createElement("p",{className:"text-sm leading-relaxed"},f.desc),/* @__PURE__ */ React.createElement("div",{className:"mt-4 h-[3px] w-14 rounded-full",style:{background:["#5B34E6","#FFC83D","#F45162","#21A179"][i%4]}}))))),
+
+    /* @__PURE__ */ React.createElement("section", { id:"keunggulan", className:"py-20 bg-white relative overflow-hidden" }, /* @__PURE__ */ React.createElement(LineArt,{className:"jw-art-a red",kind:"wave"}), /* @__PURE__ */ React.createElement("div", { className:"max-w-6xl mx-auto px-5 sm:px-8" },
+      /* @__PURE__ */ React.createElement("p", { className:"text-xs font-extrabold tracking-[.18em] text-[#F45162] mb-3" }, "KENAPA JAWARA"),
+      /* @__PURE__ */ React.createElement("h2", { className:"text-3xl sm:text-4xl font-extrabold tracking-tight mb-10" }, "Sistem ringan, kontrol tetap penuh."),
+      /* @__PURE__ */ React.createElement("div", { className:"grid md:grid-cols-3 gap-4" },
+        [{icon:ShieldCheck,title:"Data di tangan Anda",text:"Data tersimpan di browser dan bisa diekspor/impor kapan saja."},{icon:UserCog,title:"Hak akses fleksibel",text:"Kasir, Admin, dan Pengelola Sistem tetap punya akses sesuai perannya."},{icon:FileSpreadsheet,title:"Laporan siap pakai",text:"Produk Excel, laporan keuangan Excel/PDF, invoice, dan barcode tetap tersedia."}].map((x,i)=>/* @__PURE__ */ React.createElement("div",{key:x.title,className:"reveal rounded-2xl border border-slate-100 bg-[#FAF9FC] p-6",style:{transitionDelay:`${i*70}ms`}},/* @__PURE__ */ React.createElement(x.icon,{className:"w-6 h-6 text-violet-600 mb-5"}),/* @__PURE__ */ React.createElement("h3",{className:"font-bold mb-2"},x.title),/* @__PURE__ */ React.createElement("p",{className:"text-sm text-slate-500 leading-relaxed"},x.text))))),
+
+    /* @__PURE__ */ React.createElement("section", { id:"kontak", className:"py-20 bg-[#17151F] text-white" }, /* @__PURE__ */ React.createElement("div", { className:"max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[1fr_auto] gap-8 items-center" }, /* @__PURE__ */ React.createElement("div",null,/* @__PURE__ */ React.createElement("p",{className:"text-xs font-extrabold tracking-[.18em] text-[#FFC83D] mb-3"},"MULAI SEKARANG"),/* @__PURE__ */ React.createElement("h2",{className:"text-3xl sm:text-4xl font-extrabold tracking-tight"},"Tokonya tetap. Cara kerjanya jadi lebih enak."),/* @__PURE__ */ React.createElement("p",{className:"mt-3 text-white/55 max-w-2xl"},"Coba seluruh alur Jawara dari penjualan sampai laporan tanpa kehilangan fitur yang sudah Anda bangun.")),/* @__PURE__ */ React.createElement("button",{onClick:onRegister,className:"px-6 py-3.5 rounded-xl bg-[#FFC83D] text-stone-900 font-bold inline-flex items-center gap-2"},"Coba Gratis ",/* @__PURE__ */ React.createElement(ArrowRight,{className:"w-4 h-4"}))))),
+
+    /* @__PURE__ */ React.createElement("footer", { className:"bg-[#17151F] border-t border-white/10 py-7" }, /* @__PURE__ */ React.createElement("div", { className:"max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4" }, /* @__PURE__ */ React.createElement(Logo,{logoUrl:""}), /* @__PURE__ */ React.createElement("div",{className:"flex items-center gap-4"},/* @__PURE__ */ React.createElement("button",{onClick:onAdminLogin,className:"text-xs text-white/45 hover:text-white inline-flex items-center gap-1.5"},/* @__PURE__ */ React.createElement(Crown,{className:"w-3.5 h-3.5"}),"Pengelola Sistem"),/* @__PURE__ */ React.createElement(CopyrightFooter,{className:"text-xs text-white/35"}))))));
 }
 function DashboardHome({ products, transactions, setActive }) {
   const totalToday = transactions.reduce((s, t) => s + t.total, 0);
@@ -1652,6 +2086,11 @@ function AkunPage({ accounts, setAccounts, notify }) {
     return /* @__PURE__ */ React.createElement("button", { key: label, type: "button", onClick: () => togglePermission(a.id, "kasir", label), className: `text-[11px] font-medium px-2.5 py-1 rounded-full border transition-colors ${on ? "bg-amber-500 text-white border-amber-500" : "bg-white text-slate-400 border-slate-200"}` }, label);
   })))), /* @__PURE__ */ React.createElement("p", { className: "text-[10px] text-slate-400 mt-2.5" }, "Dashboard selalu bisa diakses semua peran. Klik satu menu untuk mengizinkan/mencabut akses peran tersebut ke toko ini."))))), accounts.length === 0 && /* @__PURE__ */ React.createElement("tr", null, /* @__PURE__ */ React.createElement("td", { colSpan: 5, className: "px-4 py-6 text-center text-sm text-slate-400" }, "Belum ada akun toko."))))), /* @__PURE__ */ React.createElement("form", { onSubmit: submitAccount, className: "bg-white rounded-2xl border border-slate-100 shadow-sm p-4 h-fit" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 text-sm mb-3" }, editingId ? "\u270E Edit Akun Toko" : "+ Tambah Akun Toko"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-3" }, /* @__PURE__ */ React.createElement("input", { value: form.storeName, onChange: (e) => setForm({ ...form, storeName: e.target.value }), placeholder: "Nama toko", className: "border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-violet-400" }), /* @__PURE__ */ React.createElement("input", { value: form.owner, onChange: (e) => setForm({ ...form, owner: e.target.value }), placeholder: "Nama pemilik", className: "border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-violet-400" }), /* @__PURE__ */ React.createElement("input", { value: form.email, onChange: (e) => setForm({ ...form, email: e.target.value }), type: "email", placeholder: "Email login Admin", className: "border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-violet-400" }), /* @__PURE__ */ React.createElement("input", { value: form.password, onChange: (e) => setForm({ ...form, password: e.target.value }), placeholder: "Kata sandi login", className: "border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-violet-400" }), /* @__PURE__ */ React.createElement("div", { className: "border-t border-slate-100 pt-3 mt-0.5" }, /* @__PURE__ */ React.createElement("p", { className: "text-[11px] font-medium text-slate-500 mb-2" }, "Login Kasir (opsional \u2014 dikosongkan = dibuatkan otomatis)"), /* @__PURE__ */ React.createElement("div", { className: "flex flex-col gap-2" }, /* @__PURE__ */ React.createElement("input", { value: form.kasirEmail, onChange: (e) => setForm({ ...form, kasirEmail: e.target.value }), type: "email", placeholder: "Email login Kasir", className: "border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-violet-400" }), /* @__PURE__ */ React.createElement("input", { value: form.kasirPassword, onChange: (e) => setForm({ ...form, kasirPassword: e.target.value }), placeholder: "Kata sandi Kasir", className: "border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-violet-400" }))), /* @__PURE__ */ React.createElement("select", { value: form.plan, onChange: (e) => setForm({ ...form, plan: e.target.value }), className: "border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-violet-400" }, PLAN_OPTIONS.map((p) => /* @__PURE__ */ React.createElement("option", { key: p, value: p }, p))), /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("label", { className: "text-xs font-medium text-slate-600 mb-1 block" }, "Berlaku sampai"), /* @__PURE__ */ React.createElement("input", { value: form.expiresAt, onChange: (e) => setForm({ ...form, expiresAt: e.target.value }), type: "date", className: "w-full border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-violet-400" })), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ React.createElement("button", { type: "submit", className: "flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-violet-600 text-white text-sm font-semibold hover:bg-violet-700" }, editingId ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Pencil, { className: "w-4 h-4" }), " Simpan") : /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Plus, { className: "w-4 h-4" }), " Tambah")), editingId && /* @__PURE__ */ React.createElement("button", { type: "button", onClick: cancelEdit, className: "px-4 py-2.5 rounded-lg border border-slate-200 text-slate-600 text-sm font-semibold hover:bg-slate-50" }, "Batal"))))));
 }
+
+function AppLineArt() {
+  return /* @__PURE__ */ React.createElement("div", { className: "jw-app-lineart", "aria-hidden": "true" }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 130 95" }, /* @__PURE__ */ React.createElement("path", { d: "M8 72 C27 40, 45 84, 67 48 S106 30, 122 50" }), /* @__PURE__ */ React.createElement("path", { d: "M80 18l5 10 11 2-8 7 2 11-10-6-10 6 2-11-8-7 11-2 5-10Z" })));
+}
+
 function DashboardPage({ onLogout, settings, setSettings, role, account }) {
   const roleInfo = ROLES[role] || ROLES.admin;
   const displayName = account ? role === "kasir" ? `Kasir \u2014 ${account.storeName}` : account.owner : roleInfo.name;
@@ -1721,10 +2160,10 @@ function DashboardPage({ onLogout, settings, setSettings, role, account }) {
         return null;
     }
   }, [safeActive, products, transactions, customers, suppliers, accounts, settings, account]);
-  return /* @__PURE__ */ React.createElement("div", { className: "min-h-screen bg-slate-50 flex text-slate-900" }, /* @__PURE__ */ React.createElement("aside", { className: `fixed lg:static z-40 inset-y-0 left-0 w-64 bg-white border-r border-slate-100 flex flex-col transition-transform duration-200 ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:hidden"}` }, /* @__PURE__ */ React.createElement("div", { className: "h-16 flex items-center px-5 border-b border-slate-100 justify-between" }, /* @__PURE__ */ React.createElement(Logo, { logoUrl: settings.logoUrl }), /* @__PURE__ */ React.createElement("button", { onClick: () => setSidebarOpen(false), title: "Tutup menu", className: "text-slate-400 hover:text-slate-600" }, /* @__PURE__ */ React.createElement(X, { className: "w-5 h-5" }))), /* @__PURE__ */ React.createElement("nav", { className: "flex-1 px-3 py-4 flex flex-col gap-1 overflow-y-auto" }, allowedNav.map((item) => /* @__PURE__ */ React.createElement("button", { key: item.label, onClick: () => {
+  return /* @__PURE__ */ React.createElement("div", { className: "jawara-shell min-h-screen bg-slate-50 flex text-slate-900" }, /* @__PURE__ */ React.createElement("aside", { className: `jawara-sidebar fixed lg:static z-40 inset-y-0 left-0 w-64 bg-white border-r border-slate-100 flex flex-col transition-transform duration-200 ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}` }, /* @__PURE__ */ React.createElement("div", { className: "h-16 flex items-center px-5 border-b border-slate-100 justify-between" }, /* @__PURE__ */ React.createElement(Logo, { logoUrl: settings.logoUrl }), /* @__PURE__ */ React.createElement("button", { onClick: () => setSidebarOpen(false), title: "Tutup menu", className: "text-slate-400 hover:text-slate-600" }, /* @__PURE__ */ React.createElement(X, { className: "w-5 h-5" }))), /* @__PURE__ */ React.createElement("nav", { className: "flex-1 px-3 py-4 flex flex-col gap-1 overflow-y-auto" }, allowedNav.map((item) => /* @__PURE__ */ React.createElement("button", { key: item.label, onClick: () => {
     setActive(item.label);
     setSidebarOpen(false);
-  }, className: `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-left ${safeActive === item.label ? "bg-violet-50 text-violet-600" : "text-slate-500 hover:bg-slate-50"}` }, /* @__PURE__ */ React.createElement(item.icon, { className: "w-4 h-4" }), item.label))), /* @__PURE__ */ React.createElement("div", { className: "p-3 border-t border-slate-100 flex flex-col gap-2" }, /* @__PURE__ */ React.createElement("button", { onClick: onLogout, className: "w-full inline-flex items-center justify-center gap-2 text-sm font-semibold text-rose-600 border border-rose-200 bg-rose-50 hover:bg-rose-100 rounded-lg px-3 py-2.5" }, /* @__PURE__ */ React.createElement(LogOut, { className: "w-4 h-4" }), " Keluar"), /* @__PURE__ */ React.createElement(CopyrightFooter, { className: "text-center text-[10px] text-slate-300 px-3" }))), sidebarOpen && /* @__PURE__ */ React.createElement("div", { className: "fixed inset-0 bg-black/30 z-30 lg:hidden", onClick: () => setSidebarOpen(false) }), /* @__PURE__ */ React.createElement("div", { className: "flex-1 min-w-0" }, /* @__PURE__ */ React.createElement("header", { className: "h-16 bg-white border-b border-slate-100 flex items-center justify-between px-4 sm:px-6 gap-3 sticky top-0 z-20" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3 flex-1" }, /* @__PURE__ */ React.createElement("button", { onClick: () => setSidebarOpen((v) => !v), title: sidebarOpen ? "Tutup menu" : "Buka menu", className: "text-slate-500 hover:text-slate-700" }, /* @__PURE__ */ React.createElement(Menu, { className: "w-5 h-5" })), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-400 max-w-sm flex-1" }, /* @__PURE__ */ React.createElement(Search, { className: "w-4 h-4" }), " Cari menu...")), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("div", { className: "w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center" }, roleInfo.key === "superadmin" ? /* @__PURE__ */ React.createElement(Crown, { className: "w-4 h-4 text-violet-600" }) : /* @__PURE__ */ React.createElement(User, { className: "w-4 h-4 text-violet-600" })), /* @__PURE__ */ React.createElement("div", { className: "hidden sm:block text-sm", title: displayEmail || void 0 }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 leading-tight" }, displayName), account && (account.isDemo ? /* @__PURE__ */ React.createElement("span", { className: "inline-flex items-center gap-1 text-[10px] font-semibold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded" }, /* @__PURE__ */ React.createElement(FlaskConical, { className: "w-2.5 h-2.5" }), " Demo") : /* @__PURE__ */ React.createElement("span", { className: "inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded" }, /* @__PURE__ */ React.createElement(BadgeCheck, { className: "w-2.5 h-2.5" }), " Resmi"))), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-slate-400 leading-none" }, roleInfo.label)), /* @__PURE__ */ React.createElement("button", { onClick: onLogout, title: "Keluar", className: "inline-flex items-center gap-1.5 text-xs font-semibold text-rose-600 hover:bg-rose-50 border border-rose-200 rounded-lg px-2.5 py-2" }, /* @__PURE__ */ React.createElement(LogOut, { className: "w-3.5 h-3.5" }), " ", /* @__PURE__ */ React.createElement("span", { className: "hidden sm:inline" }, "Keluar")))), account?.isDemo && /* @__PURE__ */ React.createElement("div", { className: "bg-amber-50 border-b border-amber-200 px-4 sm:px-6 py-2 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(FlaskConical, { className: "w-4 h-4 text-amber-600 shrink-0" }), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-amber-800" }, /* @__PURE__ */ React.createElement("strong", null, "Mode Demo"), " \u2014 akun contoh bawaan JAWARA. Datanya bebas diutak-atik dan tidak berpengaruh ke toko yang sudah berlangganan asli.")), /* @__PURE__ */ React.createElement("main", { className: "p-4 sm:p-6" }, /* @__PURE__ */ React.createElement("h1", { className: "text-xl font-bold text-slate-900 mb-4" }, safeActive), pageContent)), /* @__PURE__ */ React.createElement(Toast, { message: toast }));
+  }, className: `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-left ${safeActive === item.label ? "bg-violet-50 text-violet-600" : "text-slate-500 hover:bg-slate-50"}` }, /* @__PURE__ */ React.createElement(item.icon, { className: "w-4 h-4" }), item.label))), /* @__PURE__ */ React.createElement("div", { className: "p-3 border-t border-slate-100 flex flex-col gap-2" }, /* @__PURE__ */ React.createElement("button", { onClick: onLogout, className: "w-full inline-flex items-center justify-center gap-2 text-sm font-semibold text-rose-600 border border-rose-200 bg-rose-50 hover:bg-rose-100 rounded-lg px-3 py-2.5" }, /* @__PURE__ */ React.createElement(LogOut, { className: "w-4 h-4" }), " Keluar"), /* @__PURE__ */ React.createElement(CopyrightFooter, { className: "text-center text-[10px] text-slate-300 px-3" }))), sidebarOpen && /* @__PURE__ */ React.createElement("div", { className: "fixed inset-0 bg-black/30 z-30 lg:hidden", onClick: () => setSidebarOpen(false) }), /* @__PURE__ */ React.createElement("div", { className: "flex-1 min-w-0" }, /* @__PURE__ */ React.createElement("header", { className: "jawara-topbar h-[58px] sm:h-[62px] bg-white border-b border-slate-100 flex items-center justify-between px-3 sm:px-5 lg:px-6 gap-2 sm:gap-3 sticky top-0 z-20" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3 flex-1" }, /* @__PURE__ */ React.createElement("button", { onClick: () => setSidebarOpen((v) => !v), title: sidebarOpen ? "Tutup menu" : "Buka menu", className: "text-slate-500 hover:text-slate-700" }, /* @__PURE__ */ React.createElement(Menu, { className: "w-5 h-5" })), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-400 max-w-sm flex-1" }, /* @__PURE__ */ React.createElement(Search, { className: "w-4 h-4" }), " Cari menu...")), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("div", { className: "w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center" }, roleInfo.key === "superadmin" ? /* @__PURE__ */ React.createElement(Crown, { className: "w-4 h-4 text-violet-600" }) : /* @__PURE__ */ React.createElement(User, { className: "w-4 h-4 text-violet-600" })), /* @__PURE__ */ React.createElement("div", { className: "hidden sm:block text-sm", title: displayEmail || void 0 }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 leading-tight" }, displayName), account && (account.isDemo ? /* @__PURE__ */ React.createElement("span", { className: "inline-flex items-center gap-1 text-[10px] font-semibold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded" }, /* @__PURE__ */ React.createElement(FlaskConical, { className: "w-2.5 h-2.5" }), " Demo") : /* @__PURE__ */ React.createElement("span", { className: "inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded" }, /* @__PURE__ */ React.createElement(BadgeCheck, { className: "w-2.5 h-2.5" }), " Resmi"))), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-slate-400 leading-none" }, roleInfo.label)), /* @__PURE__ */ React.createElement("button", { onClick: onLogout, title: "Keluar", className: "inline-flex items-center gap-1.5 text-xs font-semibold text-rose-600 hover:bg-rose-50 border border-rose-200 rounded-lg px-2.5 py-2" }, /* @__PURE__ */ React.createElement(LogOut, { className: "w-3.5 h-3.5" }), " ", /* @__PURE__ */ React.createElement("span", { className: "hidden sm:inline" }, "Keluar")))), account?.isDemo && /* @__PURE__ */ React.createElement("div", { className: "bg-amber-50 border-b border-amber-200 px-4 sm:px-6 py-2 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(FlaskConical, { className: "w-4 h-4 text-amber-600 shrink-0" }), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-amber-800" }, /* @__PURE__ */ React.createElement("strong", null, "Mode Demo"), " \u2014 akun contoh bawaan JAWARA. Datanya bebas diutak-atik dan tidak berpengaruh ke toko yang sudah berlangganan asli.")), /* @__PURE__ */ React.createElement("main", { className: "jawara-main p-4 sm:p-6" }, /* @__PURE__ */ React.createElement(AppLineArt, null), /* @__PURE__ */ React.createElement("h1", { className: "text-xl font-bold text-slate-900 mb-4" }, safeActive), pageContent)), /* @__PURE__ */ React.createElement(Toast, { message: toast }));
 }
 function App() {
   const [page, setPage] = useState("landing");
