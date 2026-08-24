@@ -819,6 +819,34 @@
     color: #FFC83D !important;
   }
 
+
+  /* v11 — eliminate white/off-white area below login on tall/mobile/tablet viewports */
+  html, body, #root {
+    min-height: 100%;
+    margin: 0;
+  }
+
+  /* Login screen must always paint through the entire visual viewport */
+  #root > .bg-ink {
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    width: 100%;
+    background-color: #1b1714 !important;
+  }
+
+  /* iOS/iPad overscroll should reveal the same login background, not white */
+  html:has(#root > .bg-ink),
+  body:has(#root > .bg-ink),
+  #root:has(> .bg-ink) {
+    background: #1b1714 !important;
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    #root > .bg-ink {
+      min-height: -webkit-fill-available !important;
+    }
+  }
+
 </style>
 </head>
 <body>
