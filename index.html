@@ -569,6 +569,123 @@
   @media(max-width:900px){.jw-process-item:not(:last-child)::after{top:auto;right:24px;left:24px;bottom:0;width:auto;height:1px}.jw-footer-grid{grid-template-columns:1fr 1fr;gap:32px}}
   @media(max-width:640px){#kontak>div{padding:28px!important;border-radius:24px}.jw-section + .jw-section::before{width:calc(100% - 28px)}.jw-process-item{min-height:auto;padding:22px}.jw-footer-grid{grid-template-columns:1fr;gap:26px}}
 
+
+  /* =========================================================
+     v5 — Demo vs Subscribe marketing + visible footer brand
+     ========================================================= */
+  .jw-access-section{
+    background:
+      radial-gradient(circle at 8% 14%, rgba(255,200,61,.13), transparent 22%),
+      radial-gradient(circle at 92% 82%, rgba(91,52,230,.10), transparent 25%),
+      #F8F7FB;
+  }
+  .jw-access-grid{
+    display:grid;
+    grid-template-columns:1fr 1.08fr;
+    gap:18px;
+    align-items:stretch;
+  }
+  .jw-plan-card{
+    position:relative;
+    border-radius:28px;
+    padding:28px;
+    overflow:hidden;
+    min-height:470px;
+  }
+  .jw-plan-demo{
+    background:#fff;
+    border:1px solid rgba(77,65,107,.11);
+    box-shadow:0 16px 50px rgba(34,26,61,.05);
+  }
+  .jw-plan-pro{
+    color:#fff;
+    background:
+      radial-gradient(circle at 94% 10%,rgba(255,200,61,.22),transparent 25%),
+      radial-gradient(circle at 8% 86%,rgba(244,81,98,.17),transparent 22%),
+      #5B34E6;
+    border:1px solid rgba(91,52,230,.35);
+    box-shadow:0 24px 70px rgba(91,52,230,.20);
+  }
+  .jw-plan-chip{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:7px 10px;border-radius:999px;
+    font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  }
+  .jw-plan-demo .jw-plan-chip{background:#FFF3C8;color:#8A6100}
+  .jw-plan-pro .jw-plan-chip{background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.13)}
+  .jw-plan-list{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+  .jw-plan-list li{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.55}
+  .jw-plan-list .dot{
+    width:22px;height:22px;border-radius:8px;display:grid;place-items:center;flex:0 0 22px;margin-top:1px
+  }
+  .jw-plan-demo .dot{background:#F2EEFF;color:#5B34E6}
+  .jw-plan-pro .dot{background:rgba(255,255,255,.14);color:#FFC83D}
+  .jw-plan-note{
+    margin-top:24px;padding:14px 15px;border-radius:16px;font-size:12px;line-height:1.6
+  }
+  .jw-plan-demo .jw-plan-note{background:#FAF9FC;color:#6D6878;border:1px solid rgba(77,65,107,.08)}
+  .jw-plan-pro .jw-plan-note{background:rgba(255,255,255,.09);color:rgba(255,255,255,.76);border:1px solid rgba(255,255,255,.10)}
+  .jw-mini-pricing{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px
+  }
+  .jw-mini-price{
+    border-radius:15px;padding:12px 10px;text-align:center;background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.12)
+  }
+  .jw-mini-price strong,.jw-mini-price span{display:block}
+  .jw-mini-price strong{font-size:12px}
+  .jw-mini-price span{font-size:10px;color:rgba(255,255,255,.62);margin-top:3px}
+  .jw-access-vs{
+    width:46px;height:46px;border-radius:16px;background:#17151F;color:#FFC83D;
+    display:grid;place-items:center;font-weight:900;font-size:11px;
+    position:absolute;left:50%;top:51%;transform:translate(-50%,-50%) rotate(-6deg);
+    z-index:5;box-shadow:0 12px 26px rgba(23,21,31,.18);border:3px solid #F8F7FB
+  }
+  .jw-access-wrap{position:relative}
+  .jw-pro-scribble{
+    position:absolute;right:20px;top:20px;width:110px;height:64px;color:#FFC83D;opacity:.7;pointer-events:none
+  }
+
+  .jw-footer-brandline{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:30px;
+    padding-bottom:30px;margin-bottom:34px;border-bottom:1px solid rgba(255,255,255,.08)
+  }
+  .jw-footer-bigword{
+    font-family:'Anton',sans-serif;
+    font-size:clamp(3.8rem,9vw,8.5rem);
+    line-height:.78;
+    letter-spacing:-.025em;
+    color:#fff;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .jw-footer-bigword span{color:#FFC83D}
+  .jw-footer-tagline{
+    max-width:350px;text-align:right;color:rgba(255,255,255,.45);font-size:13px;line-height:1.6
+  }
+  .jw-footer .jawara-brand-word{
+    color:#fff!important;
+    font-weight:800!important;
+  }
+  .jw-footer .jawara-brand-word b{color:#FFC83D!important}
+  .jw-footer .jawara-brand-mark{
+    background:#fff!important;
+    border-color:#fff!important;
+  }
+
+  @media(max-width:850px){
+    .jw-access-grid{grid-template-columns:1fr}
+    .jw-access-vs{position:relative;left:auto;top:auto;transform:rotate(-4deg);margin:-8px auto;z-index:6}
+    .jw-plan-card{min-height:auto}
+  }
+  @media(max-width:620px){
+    .jw-plan-card{padding:22px;border-radius:23px}
+    .jw-mini-pricing{grid-template-columns:1fr 1fr 1fr}
+    .jw-footer-brandline{display:block}
+    .jw-footer-tagline{text-align:left;margin-top:20px}
+    .jw-footer-bigword{font-size:clamp(3.5rem,20vw,6rem);white-space:normal}
+  }
+
 </style>
 </head>
 <body>
@@ -1434,17 +1551,110 @@ function LandingUseCaseSection() {
     )
   );
 }
+
+function LandingAccessSection({ onLogin, onRegister }) {
+  const demoItems = [
+    "Masuk pakai akun contoh bawaan JAWARA — tinggal klik, langsung ngulik.",
+    "Bebas coba flow kasir, produk, stok, barcode, pelanggan, supplier, laporan, dan pengaturan sesuai role demo.",
+    "Data contoh boleh diutak-atik tanpa mengganggu akun toko berlangganan.",
+    "Cocok buat kepoin workflow dulu sebelum memutuskan pakai buat operasional."
+  ];
+  const proItems = [
+    "Punya akun toko sendiri setelah pendaftaran dan pembayaran diverifikasi.",
+    "Login Admin & Kasir terpisah — kerja tim lebih rapi, akses nggak campur aduk.",
+    "Hak akses menu bisa diatur per akun oleh Pengelola Sistem.",
+    "Pakai fitur inti JAWARA buat operasional: POS, stok, barcode, pelanggan, supplier, laporan, pengaturan, ekspor/impor, dan backup.",
+    "Status langganan & masa aktif dikelola di sistem, jadi akses akun lebih terkontrol."
+  ];
+
+  return React.createElement("section",{id:"demo-vs-pro",className:"jw-section jw-access-section py-20"},
+    React.createElement("div",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"},
+      React.createElement("div",{className:"flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-11"},
+        React.createElement("div",{className:"max-w-3xl"},
+          React.createElement("p",{className:"text-xs font-extrabold tracking-[.18em] text-[#F45162] mb-3"},"COBA DULU, GAS KALAU UDAH KLIK"),
+          React.createElement("h2",{className:"text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.05]"},
+            "Demo buat kepoin. ",
+            React.createElement("span",{className:"text-violet-600"},"Subscribe buat beneran jalan.")
+          )
+        ),
+        React.createElement("p",{className:"text-sm sm:text-base text-slate-500 max-w-md leading-relaxed"},
+          "Nggak perlu langsung commit. Mainin demonya dulu, rasain flow-nya. Kalau udah cocok, baru bawa JAWARA masuk ke rutinitas toko."
+        )
+      ),
+      React.createElement("div",{className:"jw-access-wrap"},
+        React.createElement("div",{className:"jw-access-grid"},
+          React.createElement("article",{className:"jw-plan-card jw-plan-demo reveal"},
+            React.createElement("span",{className:"jw-plan-chip"},React.createElement(FlaskConical,{className:"w-3.5 h-3.5"}),"Mode Demo"),
+            React.createElement("h3",{className:"text-3xl font-extrabold tracking-tight mt-5"},"Coba. Klik. Ngulik."),
+            React.createElement("p",{className:"mt-3 text-sm text-slate-500 leading-relaxed max-w-md"},
+              "Buat yang masih pengen lihat-lihat dulu. Masuk tanpa setup toko sungguhan dan eksplor cara kerja JAWARA dari dekat."
+            ),
+            React.createElement("ul",{className:"jw-plan-list"},
+              demoItems.map((item)=>React.createElement("li",{key:item},
+                React.createElement("span",{className:"dot"},React.createElement(CheckCircle2,{className:"w-3.5 h-3.5"})),
+                React.createElement("span",{className:"text-slate-600"},item)
+              ))
+            ),
+            React.createElement("div",{className:"jw-plan-note"},
+              React.createElement("strong",{className:"text-slate-800"},"Bestie reminder: "),
+              "mode demo memang buat eksperimen. Badge “Demo” akan tampil supaya jelas kamu lagi ada di akun contoh."
+            ),
+            React.createElement("button",{onClick:onLogin,className:"mt-5 w-full sm:w-auto px-5 py-3 rounded-xl border border-violet-200 bg-violet-50 text-violet-700 font-bold inline-flex items-center justify-center gap-2"},
+              "Masuk Mode Demo ",React.createElement(Play,{className:"w-4 h-4"})
+            )
+          ),
+          React.createElement("article",{className:"jw-plan-card jw-plan-pro reveal",style:{transitionDelay:"90ms"}},
+            React.createElement("svg",{className:"jw-pro-scribble",viewBox:"0 0 120 70",fill:"none","aria-hidden":"true"},
+              React.createElement("path",{d:"M6 49c18-4 16-26 31-27 17-1 17 25 35 20 17-4 15-30 39-31",stroke:"currentColor",strokeWidth:"3.5",strokeLinecap:"round"}),
+              React.createElement("path",{d:"M93 9l5 8 9 2-7 6 2 9-9-5-8 5 2-9-7-6 9-2 4-8Z",stroke:"currentColor",strokeWidth:"2.5"})
+            ),
+            React.createElement("span",{className:"jw-plan-chip"},React.createElement(BadgeCheck,{className:"w-3.5 h-3.5"}),"Subscriber Mode"),
+            React.createElement("h3",{className:"text-3xl sm:text-4xl font-extrabold tracking-tight mt-5"},"Udah cocok? Saatnya jadi toko utama."),
+            React.createElement("p",{className:"mt-3 text-sm text-white/70 leading-relaxed max-w-lg"},
+              "Ini versi buat operasional beneran: akun terdaftar, akses tim lebih jelas, dan semua fitur inti JAWARA siap dipakai sesuai permission akun."
+            ),
+            React.createElement("ul",{className:"jw-plan-list"},
+              proItems.map((item)=>React.createElement("li",{key:item},
+                React.createElement("span",{className:"dot"},React.createElement(CheckCircle2,{className:"w-3.5 h-3.5"})),
+                React.createElement("span",{className:"text-white/80"},item)
+              ))
+            ),
+            React.createElement("div",{className:"jw-plan-note"},
+              React.createElement("strong",{className:"text-white"},"Pilih ritmemu: "),
+              "sistem saat ini menyediakan paket Basic, Pro, dan Premium dengan masa aktif langganan."
+            ),
+            React.createElement("div",{className:"jw-mini-pricing"},
+              SUBSCRIPTION_PLANS.map((p)=>React.createElement("div",{key:p.key,className:"jw-mini-price"},
+                React.createElement("strong",null,p.key),
+                React.createElement("span",null,rupiah(p.price),"/bln")
+              ))
+            ),
+            React.createElement("button",{onClick:onRegister,className:"mt-5 w-full sm:w-auto px-5 py-3 rounded-xl bg-[#FFC83D] text-stone-900 font-extrabold inline-flex items-center justify-center gap-2"},
+              "Daftar & Subscribe ",React.createElement(ArrowRight,{className:"w-4 h-4"})
+            )
+          )
+        ),
+        React.createElement("div",{className:"jw-access-vs"},"VS")
+      )
+    )
+  );
+}
+
 function LandingFooterLinks({onAdminLogin,onViewMenu,onLogin,onRegister}) {
   return React.createElement(React.Fragment,null,
+    React.createElement("div",{className:"jw-footer-brandline"},
+      React.createElement("div",{className:"jw-footer-bigword"},"JAWA",React.createElement("span",null,"RA")),
+      React.createElement("p",{className:"jw-footer-tagline"},"Kasir, stok, barcode, dan laporan — dibikin lebih sat-set tanpa bikin operasional toko terasa ribet.")
+    ),
     React.createElement("div",{className:"jw-footer-grid"},
       React.createElement("div",null,
         React.createElement(Logo,{logoUrl:""}),
-        React.createElement("p",{className:"mt-4 text-sm leading-relaxed text-white/50 max-w-sm"},"Kasir dan manajemen toko untuk transaksi, stok, barcode, pelanggan, supplier, dan laporan."),
+        React.createElement("p",{className:"mt-4 text-sm leading-relaxed text-white/50 max-w-sm"},"Bukan cuma kasir. JAWARA bantu beresin alur toko dari barang masuk sampai angka-angka di laporan."),
         React.createElement("div",{className:"mt-5 flex flex-wrap gap-2"},["POS","Stok","Barcode","Laporan"].map(x=>React.createElement("span",{key:x,className:"px-2.5 py-1 rounded-full border border-white/10 text-[10px] font-semibold text-white/45"},x)))
       ),
       React.createElement("div",null,
         React.createElement("p",{className:"jw-footer-title"},"Navigasi"),
-        React.createElement("div",{className:"flex flex-col gap-3 text-sm"},React.createElement("a",{href:"#beranda"},"Beranda"),React.createElement("a",{href:"#fitur"},"Fitur"),React.createElement("a",{href:"#keunggulan"},"Keunggulan"),React.createElement("a",{href:"#alur"},"Alur Kerja"))
+        React.createElement("div",{className:"flex flex-col gap-3 text-sm"},React.createElement("a",{href:"#beranda"},"Beranda"),React.createElement("a",{href:"#fitur"},"Fitur"),React.createElement("a",{href:"#keunggulan"},"Keunggulan"),React.createElement("a",{href:"#alur"},"Alur Kerja"),React.createElement("a",{href:"#demo-vs-pro"},"Demo vs Subscribe"))
       ),
       React.createElement("div",null,
         React.createElement("p",{className:"jw-footer-title"},"Sistem"),
@@ -1527,6 +1737,7 @@ function LandingPage({ onLogin, onRegister, onViewMenu, onAdminLogin, settings }
 
     /* @__PURE__ */ React.createElement(LandingProcessSection, null),
     /* @__PURE__ */ React.createElement(LandingUseCaseSection, null),
+    /* @__PURE__ */ React.createElement(LandingAccessSection,{onLogin,onRegister}),
     /* @__PURE__ */ React.createElement("section", { id:"kontak", className:"jw-section py-20 bg-[#17151F] text-white" }, /* @__PURE__ */ React.createElement("div", { className:"max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[1fr_auto] gap-8 items-center" }, /* @__PURE__ */ React.createElement("div",null,/* @__PURE__ */ React.createElement("p",{className:"text-xs font-extrabold tracking-[.18em] text-[#FFC83D] mb-3"},"MULAI SEKARANG"),/* @__PURE__ */ React.createElement("h2",{className:"text-3xl sm:text-4xl font-extrabold tracking-tight"},"Tokonya tetap. Cara kerjanya jadi lebih enak."),/* @__PURE__ */ React.createElement("p",{className:"mt-3 text-white/55 max-w-2xl"},"Coba seluruh alur Jawara dari penjualan sampai laporan tanpa kehilangan fitur yang sudah Anda bangun.")),/* @__PURE__ */ React.createElement("button",{onClick:onRegister,className:"px-6 py-3.5 rounded-xl bg-[#FFC83D] text-stone-900 font-bold inline-flex items-center gap-2"},"Coba Gratis ",/* @__PURE__ */ React.createElement(ArrowRight,{className:"w-4 h-4"}))))),
 
     /* @__PURE__ */ React.createElement("footer",{className:"jw-footer py-12"},/* @__PURE__ */ React.createElement("div",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"},/* @__PURE__ */ React.createElement(LandingFooterLinks,{onAdminLogin,onViewMenu,onLogin,onRegister})))));
