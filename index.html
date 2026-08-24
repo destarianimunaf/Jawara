@@ -640,6 +640,69 @@
   @media(max-width:600px){.jw-lineart-backdrop{opacity:.52}.jw-lineart-backdrop svg{width:780px;right:-500px;top:220px}}
   @media(prefers-reduced-motion:reduce){.jw-lineart-backdrop .la-stroke,.jw-lineart-backdrop .la-float,.jw-lineart-backdrop .la-float-2,.jw-lineart-backdrop .la-pulse{animation:none!important}}
 
+
+  /* ===== v9: collapsible dashboard, per-account themes, interactive landing modules ===== */
+  :root{
+    --jw-app-bg:#f8fafc;--jw-card:#fff;--jw-text:#0f172a;--jw-muted:#64748b;
+    --jw-border:#e2e8f0;--jw-accent:#7c3aed;--jw-accent-soft:#f5f3ff;
+  }
+  body[data-jawara-theme="dark"]{
+    --jw-app-bg:#101218;--jw-card:#181b23;--jw-text:#f8fafc;--jw-muted:#94a3b8;
+    --jw-border:#2b3140;--jw-accent:#a78bfa;--jw-accent-soft:#2b2242;
+  }
+  body[data-jawara-theme="warm"]{
+    --jw-app-bg:#fbf7ef;--jw-card:#fffdf8;--jw-text:#29231c;--jw-muted:#7c6f60;
+    --jw-border:#eadfce;--jw-accent:#d97706;--jw-accent-soft:#fff2d7;
+  }
+  body[data-jawara-theme="purple"]{
+    --jw-app-bg:#f7f5ff;--jw-card:#fff;--jw-text:#21153b;--jw-muted:#756a8e;
+    --jw-border:#e7def8;--jw-accent:#6d28d9;--jw-accent-soft:#efe7ff;
+  }
+  .jawara-shell,.jawara-main{background:var(--jw-app-bg)!important;color:var(--jw-text)}
+  .jawara-sidebar,.jawara-topbar,.jawara-main .bg-white{background:var(--jw-card)!important}
+  .jawara-sidebar,.jawara-topbar,.jawara-main .border-slate-100,.jawara-main .border-slate-200{border-color:var(--jw-border)!important}
+  .jawara-main .text-slate-900,.jawara-main .text-slate-800,.jawara-main .text-slate-700{color:var(--jw-text)!important}
+  .jawara-main .text-slate-600,.jawara-main .text-slate-500,.jawara-main .text-slate-400{color:var(--jw-muted)!important}
+
+  @media(min-width:1024px){
+    .jawara-sidebar.jw-desktop-hidden{
+      width:0!important;min-width:0!important;flex-basis:0!important;
+      border-right:0!important;overflow:hidden!important;transform:translateX(-100%)!important;
+    }
+  }
+  .jw-theme-select{
+    height:36px;border-radius:10px;border:1px solid var(--jw-border);background:var(--jw-card);
+    color:var(--jw-text);font-size:12px;font-weight:700;padding:0 9px;outline:none
+  }
+  .jw-theme-settings{
+    margin-bottom:18px;padding:18px;border-radius:18px;border:1px solid var(--jw-border);
+    background:var(--jw-card)
+  }
+  .jw-theme-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .jw-theme-button{
+    display:inline-flex;align-items:center;gap:7px;padding:9px 11px;border-radius:11px;
+    border:1px solid var(--jw-border);background:var(--jw-card);color:var(--jw-text);
+    font-size:12px;font-weight:700
+  }
+  .jw-theme-button.active{border-color:var(--jw-accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--jw-accent) 14%,transparent)}
+  .jw-theme-dot{width:13px;height:13px;border-radius:50%}
+
+  .jw-module-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .jw-module-card{
+    text-align:left;position:relative;overflow:hidden;padding:20px;border-radius:22px;
+    border:1px solid rgba(77,65,107,.10);background:#fff;
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease
+  }
+  .jw-module-card:hover,.jw-module-card.active{transform:translateY(-4px);box-shadow:0 18px 45px rgba(42,31,76,.08);border-color:rgba(91,52,230,.25)}
+  .jw-module-card .blob{position:absolute;width:88px;height:88px;border-radius:50%;right:-22px;bottom:-24px;opacity:.8}
+  .jw-module-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;margin-bottom:26px}
+  .jw-module-detail{
+    margin-top:14px;padding:20px;border-radius:22px;border:1px solid rgba(77,65,107,.10);
+    background:#fff;display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center
+  }
+  @media(max-width:960px){.jw-module-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.jw-module-grid{grid-template-columns:1fr}.jw-module-detail{grid-template-columns:1fr}.jw-theme-select{max-width:105px}}
+
 </style>
 </head>
 <body>
@@ -1617,6 +1680,47 @@ function LandingLineArtBackdrop() {
   );
 }
 
+
+function LandingInteractiveMenu({ onViewMenu }) {
+  const items = [
+    {label:"Penjualan",icon:ShoppingCart,text:"Cari atau scan produk, atur member dan diskon, lalu selesaikan pembayaran.",color:"#5B34E6",tint:"#EEE9FF"},
+    {label:"Stok",icon:Boxes,text:"Pantau stok bergerak dan barang menipis tanpa muter ke banyak halaman.",color:"#D99500",tint:"#FFF4C7"},
+    {label:"Barcode",icon:BarcodeIcon,text:"Generate, scan, dan cetak label barcode langsung dari satu flow.",color:"#F45162",tint:"#FFE7EA"},
+    {label:"Laporan",icon:FileText,text:"Baca omzet dan transaksi, lalu ekspor Excel/PDF saat dibutuhkan.",color:"#168B68",tint:"#E6F7F1"}
+  ];
+  const [active,setActive] = useState(items[0].label);
+  const current = items.find(x=>x.label===active) || items[0];
+  return React.createElement("section",{id:"jelajah-menu",className:"jw-section py-20 bg-[#FAF9FC]"},
+    React.createElement("div",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"},
+      React.createElement("div",{className:"flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-10"},
+        React.createElement("div",{className:"max-w-3xl"},
+          React.createElement("p",{className:"text-xs font-extrabold tracking-[.18em] text-violet-600 mb-3"},"INTIP MENUNYA"),
+          React.createElement("h2",{className:"text-3xl sm:text-4xl font-extrabold tracking-tight"},"Klik menunya. Lihat flow-nya. Nggak cuma pajangan.")
+        ),
+        React.createElement("p",{className:"text-sm text-slate-500 max-w-md leading-relaxed"},"Pilih modul untuk melihat ringkasan singkat sebelum masuk ke sistem.")
+      ),
+      React.createElement("div",{className:"jw-module-grid"},
+        items.map(i=>React.createElement("button",{type:"button",key:i.label,onClick:()=>setActive(i.label),className:`jw-module-card ${active===i.label?"active":""}`},
+          React.createElement("span",{className:"blob",style:{background:i.tint}}),
+          React.createElement("div",{className:"jw-module-icon",style:{background:i.tint,color:i.color}},React.createElement(i.icon,{className:"w-5 h-5"})),
+          React.createElement("h3",{className:"font-bold"},i.label),
+          React.createElement("p",{className:"text-sm text-slate-500 leading-relaxed mt-2"},i.text),
+          React.createElement("span",{className:"inline-flex items-center gap-1.5 text-xs font-extrabold mt-4",style:{color:i.color}},active===i.label?"Dipilih":"Lihat detail",React.createElement(ArrowRight,{className:"w-3.5 h-3.5"}))
+        ))
+      ),
+      React.createElement("div",{className:"jw-module-detail"},
+        React.createElement("div",{className:"w-12 h-12 rounded-2xl grid place-items-center",style:{background:current.tint,color:current.color}},React.createElement(current.icon,{className:"w-5 h-5"})),
+        React.createElement("div",null,
+          React.createElement("p",{className:"text-[10px] tracking-[.16em] font-extrabold text-slate-400"},"MODUL AKTIF"),
+          React.createElement("h3",{className:"font-bold text-lg mt-1"},current.label),
+          React.createElement("p",{className:"text-sm text-slate-500 mt-1"},current.text)
+        ),
+        React.createElement("button",{type:"button",onClick:onViewMenu,className:"px-4 py-2.5 rounded-xl bg-stone-900 text-white text-sm font-bold inline-flex items-center justify-center gap-2"},"Lihat Daftar Menu",React.createElement(ArrowRight,{className:"w-4 h-4"}))
+      )
+    )
+  );
+}
+
 function LandingPage({ onLogin, onRegister, onViewMenu, onAdminLogin, settings }) {
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
@@ -1681,6 +1785,7 @@ function LandingPage({ onLogin, onRegister, onViewMenu, onAdminLogin, settings }
 
     /* @__PURE__ */ React.createElement(LandingProcessSection, null),
     /* @__PURE__ */ React.createElement(LandingUseCaseSection, null),
+    /* @__PURE__ */ React.createElement(LandingInteractiveMenu,{onViewMenu}),
     /* @__PURE__ */ React.createElement(LandingSafeAccessSection,null),
     /* @__PURE__ */ React.createElement("section", { id:"kontak", className:"jw-section py-20 bg-[#17151F] text-white" }, /* @__PURE__ */ React.createElement("div", { className:"max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-[1fr_auto] gap-8 items-center" }, /* @__PURE__ */ React.createElement("div",null,/* @__PURE__ */ React.createElement("p",{className:"text-xs font-extrabold tracking-[.18em] text-[#FFC83D] mb-3"},"MULAI SEKARANG"),/* @__PURE__ */ React.createElement("h2",{className:"text-3xl sm:text-4xl font-extrabold tracking-tight"},"Tokonya tetap. Cara kerjanya jadi lebih enak."),/* @__PURE__ */ React.createElement("p",{className:"mt-3 text-white/55 max-w-2xl"},"Coba seluruh alur Jawara dari penjualan sampai laporan tanpa kehilangan fitur yang sudah Anda bangun.")),/* @__PURE__ */ React.createElement("button",{onClick:onRegister,className:"px-6 py-3.5 rounded-xl bg-[#FFC83D] text-stone-900 font-bold inline-flex items-center gap-2"},"Coba Gratis ",/* @__PURE__ */ React.createElement(ArrowRight,{className:"w-4 h-4"}))))),
 
@@ -1712,6 +1817,18 @@ function LandingPage({ onLogin, onRegister, onViewMenu, onAdminLogin, settings }
       )
     )));
 }
+
+function useJawaraTheme(accountKey) {
+  const key = `jawara_theme_${accountKey || "guest"}`;
+  const [theme, setTheme] = useLocalStorageState(key, "default");
+  useEffect(() => {
+    if (theme && theme !== "default") document.body.setAttribute("data-jawara-theme", theme);
+    else document.body.removeAttribute("data-jawara-theme");
+    return () => document.body.removeAttribute("data-jawara-theme");
+  }, [theme]);
+  return [theme, setTheme];
+}
+
 function DashboardHome({ products, transactions, setActive }) {
   const totalToday = transactions.reduce((s, t) => s + t.total, 0);
   const totalQty = transactions.reduce((s, t) => s + t.qty, 0);
@@ -2397,6 +2514,7 @@ function DashboardPage({ onLogout, settings, setSettings, role, account }) {
   });
   const [active, setActive] = useState(roleInfo.key === "kasir" ? "Penjualan" : "Dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(() => typeof window !== "undefined" ? window.innerWidth >= 1024 : true);
+  const [theme, setTheme] = useJawaraTheme(account?.id || role || "guest");
   const [products, setProducts] = useLocalStorageState("jawara_products", initialProducts);
   const [transactions, setTransactions] = useLocalStorageState("jawara_transactions", initialTransactions);
   const [customers, setCustomers] = useLocalStorageState("jawara_customers", initialCustomers);
@@ -2454,10 +2572,36 @@ function DashboardPage({ onLogout, settings, setSettings, role, account }) {
         return null;
     }
   }, [safeActive, products, transactions, customers, suppliers, accounts, settings, account]);
-  return /* @__PURE__ */ React.createElement("div", { className: "jawara-shell min-h-screen bg-slate-50 flex text-slate-900" }, /* @__PURE__ */ React.createElement("aside", { className: `jawara-sidebar fixed lg:static z-40 inset-y-0 left-0 w-64 bg-white border-r border-slate-100 flex flex-col transition-transform duration-200 ${sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}` }, /* @__PURE__ */ React.createElement("div", { className: "h-16 flex items-center px-5 border-b border-slate-100 justify-between" }, /* @__PURE__ */ React.createElement(Logo, { logoUrl: settings.logoUrl }), /* @__PURE__ */ React.createElement("button", { onClick: () => setSidebarOpen(false), title: "Tutup menu", className: "text-slate-400 hover:text-slate-600" }, /* @__PURE__ */ React.createElement(X, { className: "w-5 h-5" }))), /* @__PURE__ */ React.createElement("nav", { className: "flex-1 px-3 py-4 flex flex-col gap-1 overflow-y-auto" }, allowedNav.map((item) => /* @__PURE__ */ React.createElement("button", { key: item.label, onClick: () => {
+  return /* @__PURE__ */ React.createElement("div", { className: "jawara-shell min-h-screen bg-slate-50 flex text-slate-900" }, /* @__PURE__ */ React.createElement("aside", { className: `jawara-sidebar fixed lg:static z-40 inset-y-0 left-0 w-64 bg-white border-r border-slate-100 flex flex-col transition-all duration-200 ${sidebarOpen ? "translate-x-0" : "-translate-x-full jw-desktop-hidden"}` }, /* @__PURE__ */ React.createElement("div", { className: "h-16 flex items-center px-5 border-b border-slate-100 justify-between" }, /* @__PURE__ */ React.createElement(Logo, { logoUrl: settings.logoUrl }), /* @__PURE__ */ React.createElement("button", { onClick: () => setSidebarOpen(false), title: "Tutup menu", className: "lg:hidden text-slate-400 hover:text-slate-600" }, /* @__PURE__ */ React.createElement(X, { className: "w-5 h-5" }))), /* @__PURE__ */ React.createElement("nav", { className: "flex-1 px-3 py-4 flex flex-col gap-1 overflow-y-auto" }, allowedNav.map((item) => /* @__PURE__ */ React.createElement("button", { key: item.label, onClick: () => {
     setActive(item.label);
-    setSidebarOpen(false);
-  }, className: `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-left ${safeActive === item.label ? "bg-violet-50 text-violet-600" : "text-slate-500 hover:bg-slate-50"}` }, /* @__PURE__ */ React.createElement(item.icon, { className: "w-4 h-4" }), item.label))), /* @__PURE__ */ React.createElement("div", { className: "p-3 border-t border-slate-100 flex flex-col gap-2" }, /* @__PURE__ */ React.createElement("button", { onClick: onLogout, className: "w-full inline-flex items-center justify-center gap-2 text-sm font-semibold text-rose-600 border border-rose-200 bg-rose-50 hover:bg-rose-100 rounded-lg px-3 py-2.5" }, /* @__PURE__ */ React.createElement(LogOut, { className: "w-4 h-4" }), " Keluar"), /* @__PURE__ */ React.createElement(CopyrightFooter, { className: "text-center text-[10px] text-slate-300 px-3" }))), sidebarOpen && /* @__PURE__ */ React.createElement("div", { className: "fixed inset-0 bg-black/30 z-30 lg:hidden", onClick: () => setSidebarOpen(false) }), /* @__PURE__ */ React.createElement("div", { className: "flex-1 min-w-0" }, /* @__PURE__ */ React.createElement("header", { className: "jawara-topbar h-[58px] sm:h-[62px] bg-white border-b border-slate-100 flex items-center justify-between px-3 sm:px-5 lg:px-6 gap-2 sm:gap-3 sticky top-0 z-20" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3 flex-1" }, /* @__PURE__ */ React.createElement("button", { onClick: () => setSidebarOpen((v) => !v), title: sidebarOpen ? "Tutup menu" : "Buka menu", className: "text-slate-500 hover:text-slate-700" }, /* @__PURE__ */ React.createElement(Menu, { className: "w-5 h-5" })), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-400 max-w-sm flex-1" }, /* @__PURE__ */ React.createElement(Search, { className: "w-4 h-4" }), " Cari menu...")), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ React.createElement("div", { className: "w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center" }, roleInfo.key === "superadmin" ? /* @__PURE__ */ React.createElement(Crown, { className: "w-4 h-4 text-violet-600" }) : /* @__PURE__ */ React.createElement(User, { className: "w-4 h-4 text-violet-600" })), /* @__PURE__ */ React.createElement("div", { className: "hidden sm:block text-sm", title: displayEmail || void 0 }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 leading-tight" }, displayName), account && (account.isDemo ? /* @__PURE__ */ React.createElement("span", { className: "inline-flex items-center gap-1 text-[10px] font-semibold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded" }, /* @__PURE__ */ React.createElement(FlaskConical, { className: "w-2.5 h-2.5" }), " Demo") : /* @__PURE__ */ React.createElement("span", { className: "inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded" }, /* @__PURE__ */ React.createElement(BadgeCheck, { className: "w-2.5 h-2.5" }), " Resmi"))), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-slate-400 leading-none" }, roleInfo.label)), /* @__PURE__ */ React.createElement("button", { onClick: onLogout, title: "Keluar", className: "inline-flex items-center gap-1.5 text-xs font-semibold text-rose-600 hover:bg-rose-50 border border-rose-200 rounded-lg px-2.5 py-2" }, /* @__PURE__ */ React.createElement(LogOut, { className: "w-3.5 h-3.5" }), " ", /* @__PURE__ */ React.createElement("span", { className: "hidden sm:inline" }, "Keluar")))), account?.isDemo && /* @__PURE__ */ React.createElement("div", { className: "bg-amber-50 border-b border-amber-200 px-4 sm:px-6 py-2 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(FlaskConical, { className: "w-4 h-4 text-amber-600 shrink-0" }), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-amber-800" }, /* @__PURE__ */ React.createElement("strong", null, "Mode Demo"), " \u2014 akun contoh bawaan JAWARA. Datanya bebas diutak-atik dan tidak berpengaruh ke toko yang sudah berlangganan asli.")), /* @__PURE__ */ React.createElement("main", { className: "jawara-main p-4 sm:p-6" }, /* @__PURE__ */ React.createElement(AppLineArt, null), /* @__PURE__ */ React.createElement("h1", { className: "text-xl font-bold text-slate-900 mb-4" }, safeActive), pageContent)), /* @__PURE__ */ React.createElement(Toast, { message: toast }));
+    if (typeof window !== "undefined" && window.innerWidth < 1024) setSidebarOpen(false);
+  }, className: `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-left ${safeActive === item.label ? "bg-violet-50 text-violet-600" : "text-slate-500 hover:bg-slate-50"}` }, /* @__PURE__ */ React.createElement(item.icon, { className: "w-4 h-4" }), item.label))), /* @__PURE__ */ React.createElement("div", { className: "p-3 border-t border-slate-100 flex flex-col gap-2" }, /* @__PURE__ */ React.createElement("button", { onClick: onLogout, className: "w-full inline-flex items-center justify-center gap-2 text-sm font-semibold text-rose-600 border border-rose-200 bg-rose-50 hover:bg-rose-100 rounded-lg px-3 py-2.5" }, /* @__PURE__ */ React.createElement(LogOut, { className: "w-4 h-4" }), " Keluar"), /* @__PURE__ */ React.createElement(CopyrightFooter, { className: "text-center text-[10px] text-slate-300 px-3" }))), sidebarOpen && /* @__PURE__ */ React.createElement("div", { className: "fixed inset-0 bg-black/30 z-30 lg:hidden", onClick: () => setSidebarOpen(false) }), /* @__PURE__ */ React.createElement("div", { className: "flex-1 min-w-0" }, /* @__PURE__ */ React.createElement("header", { className: "jawara-topbar h-[58px] sm:h-[62px] bg-white border-b border-slate-100 flex items-center justify-between px-3 sm:px-5 lg:px-6 gap-2 sm:gap-3 sticky top-0 z-20" }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-3 flex-1" }, /* @__PURE__ */ React.createElement("button", { onClick: () => setSidebarOpen((v) => !v), title: sidebarOpen ? "Tutup menu" : "Buka menu", className: "text-slate-500 hover:text-slate-700" }, /* @__PURE__ */ React.createElement(Menu, { className: "w-5 h-5" })), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-400 max-w-sm flex-1" }, /* @__PURE__ */ React.createElement(Search, { className: "w-4 h-4" }), " Cari menu...")), /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-2 sm:gap-3" },
+  /* @__PURE__ */ React.createElement("select",{value:theme,onChange:(e)=>setTheme(e.target.value),title:"Tema akun",className:"jw-theme-select"},
+    /* @__PURE__ */ React.createElement("option",{value:"default"},"Default"),
+    /* @__PURE__ */ React.createElement("option",{value:"purple"},"Purple"),
+    /* @__PURE__ */ React.createElement("option",{value:"warm"},"Warm"),
+    /* @__PURE__ */ React.createElement("option",{value:"dark"},"Dark")
+  ),
+  /* @__PURE__ */ React.createElement("div", { className: "w-8 h-8 rounded-full bg-violet-100 flex items-center justify-center" }, roleInfo.key === "superadmin" ? /* @__PURE__ */ React.createElement(Crown, { className: "w-4 h-4 text-violet-600" }) : /* @__PURE__ */ React.createElement(User, { className: "w-4 h-4 text-violet-600" })), /* @__PURE__ */ React.createElement("div", { className: "hidden sm:block text-sm", title: displayEmail || void 0 }, /* @__PURE__ */ React.createElement("div", { className: "flex items-center gap-1.5" }, /* @__PURE__ */ React.createElement("p", { className: "font-semibold text-slate-800 leading-tight" }, displayName), account && (account.isDemo ? /* @__PURE__ */ React.createElement("span", { className: "inline-flex items-center gap-1 text-[10px] font-semibold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded" }, /* @__PURE__ */ React.createElement(FlaskConical, { className: "w-2.5 h-2.5" }), " Demo") : /* @__PURE__ */ React.createElement("span", { className: "inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded" }, /* @__PURE__ */ React.createElement(BadgeCheck, { className: "w-2.5 h-2.5" }), " Resmi"))), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-slate-400 leading-none" }, roleInfo.label)), /* @__PURE__ */ React.createElement("button", { onClick: onLogout, title: "Keluar", className: "inline-flex items-center gap-1.5 text-xs font-semibold text-rose-600 hover:bg-rose-50 border border-rose-200 rounded-lg px-2.5 py-2" }, /* @__PURE__ */ React.createElement(LogOut, { className: "w-3.5 h-3.5" }), " ", /* @__PURE__ */ React.createElement("span", { className: "hidden sm:inline" }, "Keluar")))), account?.isDemo && /* @__PURE__ */ React.createElement("div", { className: "bg-amber-50 border-b border-amber-200 px-4 sm:px-6 py-2 flex items-center gap-2" }, /* @__PURE__ */ React.createElement(FlaskConical, { className: "w-4 h-4 text-amber-600 shrink-0" }), /* @__PURE__ */ React.createElement("p", { className: "text-xs text-amber-800" }, /* @__PURE__ */ React.createElement("strong", null, "Mode Demo"), " \u2014 akun contoh bawaan JAWARA. Datanya bebas diutak-atik dan tidak berpengaruh ke toko yang sudah berlangganan asli.")), /* @__PURE__ */ React.createElement("main", { className: "jawara-main p-4 sm:p-6" }, /* @__PURE__ */ React.createElement(AppLineArt, null), /* @__PURE__ */ React.createElement("h1", { className: "text-xl font-bold text-slate-900 mb-4" }, safeActive),
+safeActive === "Pengaturan" && /* @__PURE__ */ React.createElement("section",{className:"jw-theme-settings"},
+  /* @__PURE__ */ React.createElement("div",{className:"flex items-start justify-between gap-3"},
+    /* @__PURE__ */ React.createElement("div",null,
+      /* @__PURE__ */ React.createElement("h2",{className:"font-bold"},"Tema Tampilan Akun"),
+      /* @__PURE__ */ React.createElement("p",{className:"text-xs text-slate-500 mt-1"},"Disimpan khusus untuk akun ini pada perangkat/browser yang digunakan.")
+    ),
+    /* @__PURE__ */ React.createElement(Sparkles,{className:"w-5 h-5 text-violet-500"})
+  ),
+  /* @__PURE__ */ React.createElement("div",{className:"jw-theme-buttons"},
+    [
+      {key:"default",label:"Default",c:"#7c3aed"},
+      {key:"purple",label:"Purple",c:"#6d28d9"},
+      {key:"warm",label:"Warm",c:"#d97706"},
+      {key:"dark",label:"Dark",c:"#111827"}
+    ].map(t=>/* @__PURE__ */ React.createElement("button",{type:"button",key:t.key,onClick:()=>setTheme(t.key),className:`jw-theme-button ${theme===t.key?"active":""}`},
+      /* @__PURE__ */ React.createElement("span",{className:"jw-theme-dot",style:{background:t.c}}),t.label))
+  )
+),
+pageContent)), /* @__PURE__ */ React.createElement(Toast, { message: toast }));
 }
 function App() {
   const [page, setPage] = useState("landing");
